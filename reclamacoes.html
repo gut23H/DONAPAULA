@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fale Conosco - Reclamações</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            background: white;
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 15px;
+            background: #25D366;
+            color: white;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1ebe5d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Reclamações & Outros Assuntos</h2>
+
+        <label>Seu Nome:</label>
+        <input type="text" id="nome" placeholder="Digite seu nome" required>
+
+        <label>Tipo de Mensagem:</label>
+        <select id="tipo">
+            <option value="Reclamação">Reclamação</option>
+            <option value="Sugestão">Sugestão</option>
+            <option value="Dúvida">Dúvida</option>
+            <option value="Outro">Outro Assunto</option>
+        </select>
+
+        <label>Mensagem:</label>
+        <textarea id="mensagem" placeholder="Descreva o problema ou assunto"></textarea>
+
+        <button onclick="enviarWhatsApp()">Enviar meu assunto</button>
+    </div>
+
+    <script>
+        function enviarWhatsApp() {
+            const nome = document.getElementById('nome').value;
+            const tipo = document.getElementById('tipo').value;
+            const mensagem = document.getElementById('mensagem').value;
+
+            const numero = "5588988916133"; // <-- COLOQUE SEU NÚMERO AQUI
+
+            if (!nome || !mensagem) {
+                alert("Por favor, preencha todos os campos.");
+                return;
+            }
+
+            const texto = `*Nova mensagem pelo site*\n\n` +
+                          `*Nome:* ${nome}\n` +
+                          `*Tipo:* ${tipo}\n` +
+                          `*Mensagem:*\n${mensagem}`;
+
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+
+            window.open(url, "_blank");
+        }
+    </script>
+
+</body>
+</html>
