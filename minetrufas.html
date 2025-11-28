@@ -262,24 +262,29 @@ searchInput.addEventListener('input', filterProducts);
 searchBtn.addEventListener('click', filterProducts);
     
 const PRODUCTS = [
-  {code:'T001',name:'Trufa de Morango',desc:'Mini trufa 35g',retail:1.50,wholesale:1.10,img:'T001.png'},
-  {code:'T002',name:'Trufa de Abacaxi',desc:'Mini trufa 35g',retail:1.70,wholesale:1.30,img:'T002.png'},
-  {code:'T003',name:'Trufa de Brigadeiro',desc:'Mini trufa 35g',retail:1.70,wholesale:1.30,img:'T003.png'},
-  {code:'T004',name:'Trufa de Beijinho',desc:'Mini trufa 35g',retail:1.70,wholesale:1.30,img:'T004.png'},
-  {code:'T005',name:'Trufa de Café',desc:'Mini trufa 35g',retail:1.70,wholesale:1.30,img:'T005.png'},
-  {code:'T006',name:'Trufa de Castanha',desc:'Mini trufa premium 35g',retail:1.90,wholesale:1.50,img:'T006.png'},
-  {code:'T007',name:'Trufa de Napolitano',desc:'Mini trufa 35g',retail:1.70,wholesale:1.30,img:'T007.png'},
-  {code:'T008',name:'Trufa de Oreo',desc:'Mini trufa premium 35g',retail:1.90,wholesale:1.50,img:'T008.png'},
-  {code:'T009',name:'Trufa de Paçoca',desc:'Mini trufa 35g',retail:1.70,wholesale:1.30,img:'T009.png'},
-  {code:'T010',name:'Trufa de Coco Queimado',desc:'Mini trufa 35g',retail:1.50,wholesale:1.10,img:'T010.png'},
-  {code:'T011',name:'Trufa de Maracujá',desc:'Mini trufa 35g',retail:1.50,wholesale:1.10,img:'T011.png'},
-  {code:'T012',name:'Trufa de Limão',desc:'Mini trufa 35g',retail:1.50,wholesale:1.10,img:'T012.png'},
-  {code:'T013',name:'Trufa de Amendoim',desc:'Mini trufa 35g',retail:1.70,wholesale:1.30,img:'T013.png'},
-  {code:'T014',name:'Trufa de Doce de Leite',desc:'Mini trufa 35g',retail:1.70,wholesale:1.30,img:'T014.png'},
-  {code:'T015',name:'Trufa de Chantilly',desc:'Mini trufa 35g',retail:1.70,wholesale:1.30,img:'T015.png'},
+  // 1,50
+  {code:'T001',name:'Trufa de Morango',desc:'Mini trufa 35g (Gramas Relativos)',retail:1.50,wholesale:1.10,img:'T001.png'},
+  {code:'T010',name:'Trufa de Coco Queimado',desc:'Mini trufa 35g (Gramas Relativos)',retail:1.50,wholesale:1.10,img:'T010.png'},
+  {code:'T011',name:'Trufa de Maracujá',desc:'Mini trufa 35g (Gramas Relativos)',retail:1.50,wholesale:1.10,img:'T011.png'},
+  {code:'T012',name:'Trufa de Limão',desc:'Mini trufa 35g (Gramas Relativos)',retail:1.50,wholesale:1.10,img:'T012.png'},
 
-  // Caixa de mini trufas (bem mais barata)
-  {code:'T016',name:'Caixa com 8 Mini Trufas',desc:'Mini trufas sortidas',retail:11.90,wholesale:9.90,img:'T016.png'}
+  // 1,70
+  {code:'T003',name:'Trufa de Brigadeiro',desc:'Mini trufa 35g (Gramas Relativos)',retail:1.70,wholesale:1.30,img:'T003.png'},
+  {code:'T004',name:'Trufa de Beijinho',desc:'Mini trufa 35g (Gramas Relativos)',retail:1.70,wholesale:1.30,img:'T004.png'},
+  {code:'T005',name:'Trufa de Café',desc:'Mini trufa 35g (Gramas Relativos)',retail:1.70,wholesale:1.30,img:'T005.png'},
+  {code:'T007',name:'Trufa de Napolitano',desc:'Mini trufa 35g (Gramas Relativos)',retail:1.70,wholesale:1.30,img:'T007.png'},
+  {code:'T009',name:'Trufa de Paçoca',desc:'Mini trufa 35g (Gramas Relativos)',retail:1.70,wholesale:1.30,img:'T009.png'},
+  {code:'T013',name:'Trufa de Amendoim',desc:'Mini trufa 35g (Gramas Relativos)',retail:1.70,wholesale:1.30,img:'T013.png'},
+  {code:'T014',name:'Trufa de Doce de Leite',desc:'Mini trufa 35g (Gramas Relativos)',retail:1.70,wholesale:1.30,img:'T014.png'},
+  {code:'T015',name:'Trufa de Chantilly',desc:'Mini trufa 35g (Gramas Relativos)',retail:1.70,wholesale:1.30,img:'T015.png'},
+
+  // 2,00 — Premium baratas
+  {code:'T002',name:'Trufa de Abacaxi',desc:'Mini trufa 35g (Gramas Relativos)',retail:2.00,wholesale:1.60,img:'T002.png'},
+  {code:'T006',name:'Trufa de Castanha',desc:'Mini trufa premium 35g (Gramas Relativos)',retail:2.00,wholesale:1.60,img:'T006.png'},
+  {code:'T008',name:'Trufa de Oreo',desc:'Mini trufa premium 35g (Gramas Relativos)',retail:2.00,wholesale:1.60,img:'T008.png'},
+
+  // Caixa mini ajustada
+  {code:'T016',name:'Caixa com 8 Mini Trufas',desc:'Mini trufas sortidas (Gramas Relativos)',retail:13.90,wholesale:11.90,img:'T016.png'}
 ];
 
 
@@ -471,6 +476,7 @@ const PRODUCTS = [
   </script>
 </body>
 </html>
+
 
 
 
