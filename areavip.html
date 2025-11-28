@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cliente Antigo - Donapaula</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #fff4fa;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        max-width: 480px;
+        margin: 25px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 18px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+        text-align: center;
+        color: #ff2d7d;
+        margin-bottom: 10px;
+    }
+
+    .vip-box {
+        background: #ffe1ef;
+        padding: 12px;
+        border-radius: 12px;
+        text-align: center;
+        font-size: .95rem;
+        border: 1px solid #ffb6d6;
+        color: #444;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+        margin-top: 15px;
+        display: block;
+        color: #333;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 14px;
+        margin-top: 6px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        font-size: 1rem;
+        background: white;
+    }
+
+    textarea {
+        height: 120px;
+        resize: none;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 25px;
+        background: linear-gradient(90deg, #ff4fa3, #ff2d7d);
+        color: white;
+        padding: 15px;
+        border: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 14px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+        animation: shine 2.5s infinite;
+    }
+
+    @keyframes shine {
+        0% { left: -120%; }
+        60% { left: 130%; }
+        100% { left: 130%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Cliente Antigo</h2>
+
+    <div class="vip-box">
+        ⭐ Atendimento exclusivo para clientes que já possuem preço fixo fora do site.
+    </div>
+
+    <label>Seu nome:</label>
+    <input type="text" id="nome" placeholder="Digite seu nome">
+
+    <label>Seu pedido:</label>
+    <textarea id="pedido" placeholder="Ex: 10 trufas de morango, 5 oreo..."></textarea>
+
+    <button onclick="enviarWhatsapp()">Enviar pedido VIP</button>
+</div>
+
+
+<script>
+function enviarWhatsapp() {
+    let nome = document.getElementById("nome").value;
+    let pedido = document.getElementById("pedido").value;
+
+    if (!nome || !pedido) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+    }
+
+    let texto =
+        `*Pedido Cliente Antigo (Preço Especial)*%0A%0A` +
+        `*Nome:* ${nome}%0A` +
+        `*Pedido:*%0A${pedido}%0A%0A` +
+        `_Este cliente já possui valores especiais negociados._`;
+
+    let numero = "558888170526"; // Seu número
+    let url = `https://wa.me/${numero}?text=${texto}`;
+
+    window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
