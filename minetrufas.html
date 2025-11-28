@@ -195,7 +195,8 @@
      <strong>2 dias úteis</strong></p>
 </div>
       <div style="display:flex;gap:8px">
-        <button id="btn-whatsapp" class="btn-primary">Finalizar pedido</button>
+      <button id="btn-whatsapp" class="btn-primary" data-whats-trigger>Finalizar pedido</button>
+
       </div>
     </section>
 
@@ -286,8 +287,6 @@ const PRODUCTS = [
   // Caixa mini ajustada
   {code:'T016',name:'Caixa com 8 Mini Trufas',desc:'Mini trufas sortidas (Gramas Relativos)',retail:13.90,wholesale:11.90,img:'T016.png'}
 ];
-
-
 
 
 
@@ -447,6 +446,45 @@ const PRODUCTS = [
 // cupon
     $('btn-apply').addEventListener('click',()=>{ const c = ($('inp-coupon').value||'').trim().toUpperCase(); if(c === 'TRUFA10'){ const subtotal = getSubtotal(); const discount = +(subtotal * 0.10).toFixed(2); localStorage.setItem('donapaula_discount',discount); alert('Cupom aplicado: 10% OFF'); } else { localStorage.setItem('donapaula_discount',0); alert('Cupom inválido'); } updateTotals(); });
 
+
+// 🚨 NOVA FUNÇÃO: Verificar pedido mínimo
+function validarMinimos(totalQtd) {
+  if (totalQtd < 8) {
+    alert("Pedido mínimo é de 5 trufas. Adicione mais produtos ao carrinho.");
+    return false;
+  }
+  return true;
+}
+
+// 🚨 CAPTURAR CLIQUE DO BOTÃO E APLICAR A VALIDACAO
+document.getElementById("btn-whatsapp").addEventListener("click", function (e) {
+  e.preventDefault(); // impede envio duplicado
+
+  const cart = getCart();
+
+  let totalQtd = 0;
+  cart.forEach(item => totalQtd += item.qty);
+
+  // Aplica o pedido mínimo
+  if (!validarMinimos(totalQtd)) return;
+
+  // Se passou, chama a função original
+  enviarWhatsApp();
+});
+
+// Função para continuar o envio normal
+function enviarWhatsApp() {
+  // Aqui chamamos o seu código original de envio:
+  const evt = new Event("click");
+  document.querySelector("[data-whats-trigger]").dispatchEvent(evt);
+}
+
+
+
+
+
+
+
     $('btn-whatsapp').addEventListener('click',()=>{ const cart = getCart(); if(cart.length===0){ alert('Seu carrinho está vazio'); return; } const name = $('inp-name').value.trim(); const cep = $('inp-cep').value.trim(); const street = $('inp-street').value.trim(); const number = $('inp-number').value.trim(); const neigh = $('inp-neigh').value.trim(); const city = $('inp-city').value.trim(); const tel = $('inp-tel').value.trim(); if(!name || !cep || !street || !number || !neigh || !city || !tel){ alert('Preencha todos os campos de entrega'); return; } const shipping = parseFloat(localStorage.getItem('donapaula_shipping')||0); const discount = parseFloat(localStorage.getItem('donapaula_discount')||0); const subtotal = getSubtotal(); const total = (subtotal + shipping - discount).toFixed(2);
 
       let itemsText = '';
@@ -455,7 +493,7 @@ const PRODUCTS = [
         itemsText += `${it.name} - ${it.qty} x ${formatBRL(unit)} = ${formatBRL(unit*it.qty)}\n`;
       });
 
-      const msg = `Olá, quero fazer um pedido no Feirão de Trufas DonaPaula:%0A%0AItens:%0A${encodeURIComponent(itemsText)}%0AEntrega:%0ANome: ${encodeURIComponent(name)}%0AEndere%C3%A7o: ${encodeURIComponent(street+', '+number+', '+neigh+', '+city+', CEP '+cep)}%0ATelefone/WhatsApp: ${encodeURIComponent(tel)}%0A%0ATaxa de entrega: ${formatBRL(shipping)}%0ADesconto: ${formatBRL(discount)}%0ATotal final do pedido: ${formatBRL(parseFloat(total))}%0A%0AAguardo confirma%C3%A7%C3%A3o!`;
+      const msg = `Olá, quero fazer um pedido no Feirão de Trufas DonaPaula:%0A%0AItens:%0A${encodeURIComponent(itemsText)}%0AEntrega:%0ANome: ${encodeURIComponent(name)}%0AEndere%C3%A7o: ${encodeURIComponent(street+', '+number+', '+neigh+', '+city+', CEP '+cep)}%0ATelefone/WhatsApp: ${encodeURIComponent(tel)}%0A%0ATaxa de entrega: ${formatBRL(shipping)}%0ADesconto: ${formatBRL(discount)}%0ATotal final do pedido: ${formatBRL(parseFloat(total))}%0A%0AAguardo confirma (ME ENVIE A DATA DO EVENTO) `;
 
       const phone = '+558888170526';
       const url = `https://wa.me/${phone.replace(/\D/g,'')}?text=${msg}`;
@@ -476,6 +514,7 @@ const PRODUCTS = [
   </script>
 </body>
 </html>
+
 
 
 
