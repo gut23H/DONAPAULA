@@ -18,10 +18,24 @@
   .logout{margin-top:16px;background:#fff;border-radius:10px;padding:10px;text-align:center}
   a.link{display:block;text-decoration:none;color:inherit}
   @media(min-width:700px){ .grid{grid-template-columns:repeat(3,1fr)} }
+  .card {
+    background: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    margin-bottom: 18px;
+}
+.card h3 {
+    margin: 0 0 8px;
+}
 </style>
 </head>
 <body>
 <header>⭐ Área VIP — Donapaula</header>
+  <div class="card">
+    <h3>📦 Prazo de Entrega</h3>
+    <p>Clientes VIP têm prioridade.  
+    As entregas são realizadas em **1 a 3 dias úteis**, dependendo da demanda.</p>
 <div class="container">
   <div class="welcome">
     <div style="flex:1">
@@ -51,3 +65,4 @@ document.getElementById('btnLogout').addEventListener('click', ()=>{
 </script>
 </body>
 </html>
+
