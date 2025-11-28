@@ -30,7 +30,7 @@
 
     <div class="hint">
       <strong>Observação:</strong><br>
-      Você (administrador) deve cadastrar os usuários diretamente no código, no array <code>VIP_USERS</code>.
+      Você (administrador) deve cadastrar os usuários diretamente com o dsv,  <code>VIP_USERS</code>.
     </div>
 
     <small class="note">Se já está logado será redirecionado automaticamente.</small>
@@ -40,8 +40,8 @@
 // ====== CADASTRE AQUI OS USUÁRIOS VIP ======
 // formato: { user: "nome", pass: "senha" }
 const VIP_USERS = [
-  { user: "cliente01", pass: "1234" },
-  { user: "revendedor01", pass: "5555" }
+  { user: "CHURRASCARIA-TEXEIRA", pass: "CLIENTE-TOPVIP" },
+  { user: "PADARIA-ASSA-BRANCA", pass: "CLIENTE-TOPVIP" }
 ];
 // ==========================================
 
@@ -68,3 +68,4 @@ document.getElementById('btnLogin').addEventListener('click', ()=>{
 </script>
 </body>
 </html>
+
