@@ -115,9 +115,11 @@
   background: #e6006b;
 }
 
+
   </style>
 </head>
 <body>
+  
   <header class="topo">
     <div class="brand">
       <h1>Feirão de Trufas DonaPaula</h1>
@@ -138,18 +140,35 @@
   <main class="container">
     <section class="slider" aria-label="Slider de trufas">
       <div class="slides" id="slides">
-        <div class="slide"><img src="slider1.png" alt="Trufa 1"/></div>
-        <div class="slide"><img src="slider2.png" alt="Trufa 2"/></div>
-        <div class="slide"><img src="slider3.png" alt="Trufa 3"/></div>
+        <div class="slide"><img src="images/slider1.png" alt="Trufa 1"/></div>
+        <div class="slide"><img src="images/slider2.png" alt="Trufa 2"/></div>
+        <div class="slide"><img src="images/slider3.png" alt="Trufa 3"/></div>
       </div>
+      
       <div class="slider-controls" id="dots"></div>
     </section>
+    
 <!-- Mini vídeo flutuante -->
-
     <section>
       <div class="produtos" id="produtos"></div>
     </section>
-<a href="revenda.html" class="btn-revenda">Tabela de Preços para Revenda</a>
+<div style="text-align:center;">
+  <a href="minetrufas.html" style="
+    display:inline-block;
+    background:#ff4fa3;
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    text-decoration:none;
+    font-family:Arial;
+    box-shadow:0 3px 8px rgba(0,0,0,0.2);
+  ">
+    🍫 Mine Trufas [ENTRAR]
+  </a>
+</div>
+
+
     <section class="panel" id="panel-cart">
       <h2 style="margin-top:0">Seu Pedido</h2>
       <div class="cart-list" id="cart-list"></div>
@@ -207,7 +226,7 @@
     </section>
 
     <footer>
-     
+     <a href="revenda.html" class="btn-revenda">Tabela de Preços para Revenda</a>
 </div>
 <a href="reclamacoes.html" 
    style="display:block;padding:12px;background:#caa191;color:#fff;text-align:center;border-radius:10px;text-decoration:none;font-weight:bold;">
@@ -269,22 +288,22 @@ searchInput.addEventListener('input', filterProducts);
 searchBtn.addEventListener('click', filterProducts);
     
  const PRODUCTS = [
-  {code:'T001',name:'Trufa de Morango',desc:'Trufa de morango',retail:3.50,wholesale:2.70,img:'T001.png'},
-  {code:'T002',name:'Trufa de Abacaxi',desc:'Trufa de abacaxi',retail:4.00,wholesale:3.20,img:'T002.png'},
-  {code:'T003',name:'Trufa de Brigadeiro 37g (relativo)',desc:'Trufa de brigadeiro',retail:4.00,wholesale:3.20,img:'T003.png'},
-  {code:'T004',name:'Trufa de Beijinho',desc:'Trufa de beijinho',retail:4.00,wholesale:3.00,img:'T004.png'}, // Ajustado
-  {code:'T005',name:'Trufa de Café',desc:'Trufa de café',retail:4.00,wholesale:3.20,img:'T005.png'},
-  {code:'T006',name:'Trufa de Castanha',desc:'Trufa de Castanha',retail:4.50,wholesale:3.40,img:'T006.png'}, // Ajustado
-  {code:'T007',name:'Trufa de Napolitano',desc:'Trufa de Napolitano',retail:4.00,wholesale:3.30,img:'T007.png'}, // Ajustado
-  {code:'T008',name:'Trufa de Oreo',desc:'Trufa oreo',retail:4.50,wholesale:3.50,img:'T008.png'},
-  {code:'T009',name:'Trufa de Paçoca',desc:'Trufa paçoca',retail:4.00,wholesale:3.20,img:'T009.png'},
-  {code:'T010',name:'Trufa de Coco Queimado',desc:'Trufa coco queimado',retail:3.50,wholesale:2.70,img:'T010.png'},
-  {code:'T011',name:'Trufa de Maracujá 39g (Relativo)',desc:'Trufa maracujá',retail:3.50,wholesale:2.70,img:'T011.png'},
-  {code:'T012',name:'Trufa de Limão 43g (Relativo',desc:'Trufa limão',retail:3.50,wholesale:2.50,img:'T012.png'},
-  {code:'T013',name:'Trufa de Amendoim',desc:'Trufa Amendoim',retail:4.00,wholesale:3.30,img:'T013.png'}, // Ajustado
-  {code:'T014',name:'Trufa de Doce de Leite',desc:'Trufa doce de leite',retail:4.00,wholesale:3.30,img:'T014.png'}, // Ajustado
-  {code:'T015',name:'Trufa de Chantilly',desc:'Trufa de chantilly',retail:4.00,wholesale:3.30,img:'T015.png'}, // Ajustado
-  {code:'T016',name:'Caixa de trufas com 8 UND sabores misturados, trufa grande',desc:'Para Presente',retail:28.50,wholesale:25.50,img:'T016.png'} // Ajustado
+  {code:'T001',name:'Trufa de Morango',desc:'Trufa de morango',retail:3.50,wholesale:2.70,img:'images/T001.png'},
+  {code:'T002',name:'Trufa de Abacaxi',desc:'Trufa de abacaxi',retail:4.00,wholesale:3.20,img:'images/T002.png'},
+  {code:'T003',name:'Trufa de Brigadeiro',desc:'Trufa de brigadeiro',retail:4.00,wholesale:3.20,img:'images/T003.png'},
+  {code:'T004',name:'Trufa de Beijinho',desc:'Trufa de beijinho',retail:4.00,wholesale:3.00,img:'images/T004.png'}, // Ajustado
+  {code:'T005',name:'Trufa de Café',desc:'Trufa de café',retail:4.00,wholesale:3.20,img:'images/T005.png'},
+  {code:'T006',name:'Trufa de Castanha',desc:'Trufa de Castanha',retail:4.50,wholesale:3.40,img:'images/T006.png'}, // Ajustado
+  {code:'T007',name:'Trufa de Napolitano',desc:'Trufa de Napolitano',retail:4.00,wholesale:3.30,img:'images/T007.png'}, // Ajustado
+  {code:'T008',name:'Trufa de Oreo',desc:'Trufa oreo',retail:4.50,wholesale:3.50,img:'images/T008.png'},
+  {code:'T009',name:'Trufa de Paçoca',desc:'Trufa paçoca',retail:4.00,wholesale:3.20,img:'images/T009.png'},
+  {code:'T010',name:'Trufa de Coco Queimado',desc:'Trufa coco queimado',retail:3.50,wholesale:2.70,img:'images/T010.png'},
+  {code:'T011',name:'Trufa de Maracujá',desc:'Trufa maracujá',retail:3.50,wholesale:2.70,img:'images/T011.png'},
+  {code:'T012',name:'Trufa de Limão',desc:'Trufa limão',retail:3.50,wholesale:2.50,img:'images/T012.png'},
+  {code:'T013',name:'Trufa de Amendoim',desc:'Trufa Amendoim',retail:4.00,wholesale:3.30,img:'images/T013.png'}, // Ajustado
+  {code:'T014',name:'Trufa de Doce de Leite',desc:'Trufa doce de leite',retail:4.00,wholesale:3.30,img:'images/T014.png'}, // Ajustado
+  {code:'T015',name:'Trufa de Chantilly',desc:'Trufa de chantilly',retail:4.00,wholesale:3.30,img:'images/T015.png'}, // Ajustado
+  {code:'T016',name:'Caixa de trufas com 8 UND sabores misturados, trufa grande',desc:'Para Presente',retail:28.50,wholesale:25.50,img:'images/T016.png'} // Ajustado
 ];
 
 
@@ -390,7 +409,51 @@ searchBtn.addEventListener('click', filterProducts);
     });
 
     // clear
-    $('btn-clear').addEventListener('click',()=>{ localStorage.removeItem(CART_KEY); renderCart(); updateCartBadge(); });
+   // Substitua o listener antigo por este bloco
+(function(){
+  const clearBtn = document.getElementById('btn-clear');
+  if(!clearBtn){
+    console.warn('btn-clear não encontrado no DOM');
+    return;
+  }
+
+  clearBtn.addEventListener('click', ()=> {
+    try {
+      // 1) remover carrinho do localStorage
+      localStorage.removeItem(CART_KEY);
+
+      // 2) zerar frete e desconto guardados
+      localStorage.setItem('donapaula_shipping', 0);
+      localStorage.setItem('donapaula_discount', 0);
+
+      // 3) limpar campos de endereço / cupom / nome / telefone
+      const idsToClear = ['inp-name','inp-cep','inp-street','inp-number','inp-neigh','inp-city','inp-tel','inp-coupon'];
+      idsToClear.forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.value = '';
+      });
+
+      // 4) atualizar UI e badge
+      renderCart();
+      updateTotals();
+      updateCartBadge();
+
+      // 5) garantir que os mostradores vão para zero
+      const zero = 'R$ 0,00';
+      if(document.getElementById('subtotal')) document.getElementById('subtotal').textContent = zero;
+      if(document.getElementById('shipping')) document.getElementById('shipping').textContent = zero;
+      if(document.getElementById('discount')) document.getElementById('discount').textContent = zero;
+      if(document.getElementById('total')) document.getElementById('total').textContent = zero;
+
+      // feedback rápido
+      showToast('Carrinho limpo!');
+    } catch(err) {
+      console.error('Erro ao limpar carrinho:', err);
+      alert('Erro ao limpar o carrinho. Verifique o console.');
+    }
+  });
+})();
+
 
     // toggle form
     $('btn-toggle-form').addEventListener('click',()=>{ $('panel-form').style.display = $('panel-form').style.display === 'none' ? 'block' : 'none'; smoothScrollTo($('panel-form').offsetTop - 10); });
