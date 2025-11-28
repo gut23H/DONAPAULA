@@ -478,7 +478,7 @@ searchBtn.addEventListener('click', filterProducts);
         itemsText += `${it.name} - ${it.qty} x ${formatBRL(unit)} = ${formatBRL(unit*it.qty)}\n`;
       });
 
-      const msg = `Olá, quero fazer um pedido no Feirão de Trufas DonaPaula:%0A%0AItens:%0A${encodeURIComponent(itemsText)}%0AEntrega:%0ANome: ${encodeURIComponent(name)}%0AEndere%C3%A7o: ${encodeURIComponent(street+', '+number+', '+neigh+', '+city+', CEP '+cep)}%0ATelefone/WhatsApp: ${encodeURIComponent(tel)}%0A%0ATaxa de entrega: ${formatBRL(shipping)}%0ADesconto: ${formatBRL(discount)}%0ATotal final do pedido: ${formatBRL(parseFloat(total))}%0A%0AAguardo confirma%C3%A7%C3%A3o!`;
+      const msg = `Olá, quero fazer um pedido no Feirão de Trufas DonaPaula - PEDIDO PARA EVENTOS:%0A%0AItens:%0A${encodeURIComponent(itemsText)}%0AEntrega:%0ANome: ${encodeURIComponent(name)}%0AEndere%C3%A7o: ${encodeURIComponent(street+', '+number+', '+neigh+', '+city+', CEP '+cep)}%0ATelefone/WhatsApp: ${encodeURIComponent(tel)}%0A%0ATaxa de entrega: ${formatBRL(shipping)}%0ADesconto: ${formatBRL(discount)}%0ATotal final do pedido: ${formatBRL(parseFloat(total))}%0A%0AAguardo confirma, (NOS ENVIE A DATA DO EVENTO)%C3%A7%C3%A3o!`;
 
       const phone = '+558888170526';
       const url = `https://wa.me/${phone.replace(/\D/g,'')}?text=${msg}`;
