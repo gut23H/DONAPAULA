@@ -512,8 +512,11 @@ function enviarWhatsApp() {
     let toastTimer=null;
     function showToast(msg){ const t = $('toast'); t.textContent = msg || 'Produto adicionado ao carrinho!'; t.style.display = 'block'; if(toastTimer) clearTimeout(toastTimer); toastTimer = setTimeout(()=>{ t.style.display='none'; toastTimer=null; },2000); }
   </script>
+   <script src="seguranca.js"></script>
+  <script src="seguranca-obfuscado.js"></script>
 </body>
 </html>
+
 
 
 
