@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Materiais - Donapaula</title>
+<style>
+ body{margin:0;font-family:Inter,Arial;background:#fff}
+ header{background:linear-gradient(90deg,#ff4fa3,#ff2d7d);padding:14px;color:#fff;text-align:center}
+ .wrap{max-width:760px;margin:12px auto;padding:14px}
+ .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+ .card{background:#fff;padding:12px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.04);text-align:center}
+ .btn{background:#ff4fa3;color:#fff;border:0;padding:10px;border-radius:8px;cursor:pointer}
+ .snippet{background:#f7f7f7;padding:10px;border-radius:8px;overflow:auto;font-size:14px}
+</style>
+</head>
+<body>
+<header>🎨 Materiais de Divulgação</header>
+<div class="wrap">
+  <div style="margin-bottom:10px">Abaixo você encontra espaços para colocar suas imagens e baixar modelos. Substitua os links pelos arquivos reais quando desejar.</div>
+
+  <div class="grid">
+    <div class="card">
+      <div style="height:140px;background:#faf0f7;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#d46b9a">📸 Imagem 1<br>Foto profissional</div>
+      <button class="btn" onclick="downloadSample('imagem1.jpg')">Download modelo</button>
+    </div>
+
+    <div class="card">
+      <div style="height:140px;background:#fff7f0;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#d46b48">🏷️ Banner Promo</div>
+      <button class="btn" onclick="downloadSample('banner1.jpg')">Download modelo</button>
+    </div>
+
+    <div class="card">
+      <div style="height:140px;background:#f0fff4;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#37a16a">📋 Cardápio simples</div>
+      <button class="btn" onclick="downloadSample('cardapio.pdf')">Download modelo</button>
+    </div>
+
+    <div class="card">
+      <div style="height:140px;background:#f7fbff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#3a79d6">📱 Post para Instagram</div>
+      <button class="btn" onclick="downloadSample('post-instagram.png')">Download modelo</button>
+    </div>
+  </div>
+
+  <div style="margin-top:14px" class="card">
+    <h3>Textos prontos (WhatsApp / Instagram)</h3>
+    <div class="snippet" id="snippet">
+Olá! Temos trufas fresquinhas: morango, brigadeiro, oreo. Promoção para hoje: combo 8 por preço especial. Quer reservar?
+    </div>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <button class="btn" onclick="copySnippet()">Copiar texto</button>
+      <button class="btn" onclick="downloadSnippet()">Baixar .txt</button>
+    </div>
+  </div>
+</div>
+
+<script>
+if(localStorage.getItem('vip_logged')!=='true'){ window.location.href='vip-login.html'; }
+
+function downloadSample(name){
+  // link fictício: você deve trocar para arquivos reais hospedados
+  const url = 'https://example.com/modelos/'+name;
+  window.open(url,'_blank');
+}
+
+function copySnippet(){
+  const txt = document.getElementById('snippet').innerText;
+  navigator.clipboard.writeText(txt).then(()=> alert('Texto copiado!'));
+}
+
+function downloadSnippet(){
+  const content = document.getElementById('snippet').innerText;
+  const blob = new Blob([content], {type: 'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'texto_divulgacao.txt';
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>

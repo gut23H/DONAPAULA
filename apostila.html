@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Apostila - Donapaula</title>
+<style>
+  body{margin:0;font-family:Inter,Arial;background:#fff}
+  header{background:linear-gradient(90deg,#ff4fa3,#ff2d7d);padding:14px;color:#fff;text-align:center}
+  .wrap{max-width:760px;margin:12px auto;padding:14px}
+  h2{color:#333}
+  .section{background:#fff;padding:12px;border-radius:12px;margin-top:12px;box-shadow:0 6px 20px rgba(0,0,0,0.04)}
+  pre{background:#f7f7f7;padding:10px;border-radius:8px;overflow:auto}
+  .copyBtn{background:#ff4fa3;color:#fff;border:0;padding:8px;border-radius:8px;cursor:pointer}
+</style>
+</head>
+<body>
+<header>📚 Apostila & Dicas - Donapaula</header>
+<div class="wrap">
+  <div class="section">
+    <h2>Como vender mais no WhatsApp</h2>
+    <ol>
+      <li>Responda rápido — até 1 hora durante o horário de atendimento.</li>
+      <li>Use fotos atraentes e mostre a trufa em mão para escala.</li>
+      <li>Ofereça combos com desconto (ex: 8+ = desconto).</li>
+      <li>Use chamadas claras: "Promoção hoje — leve 10 e pague 9".</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>Frases prontas (copiar)</h2>
+    <pre id="frases">Olá! Tenho 10 trufas de morango por R$ X. Quer reservar?
+Promoção: Leve 8 e pague 7 — entrega amanhã.
+Quer que separe para retirada no horário X?</pre>
+    <button class="copyBtn" data-target="frases">Copiar frases</button>
+  </div>
+
+  <div class="section">
+    <h2>Estratégias rápidas</h2>
+    <ul>
+      <li>Mostre urgência: "Restam 6 unidades".</li>
+      <li>Ofereça prova social: "Vendido hoje para 3 clientes".</li>
+      <li>Venda acessórios: caixinhas para presente.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Foto & apresentação</h2>
+    <p>Dicas rápidas:</p>
+    <ul>
+      <li>Iluminação natural, fundo neutro.</li>
+      <li>Use close e uma foto de contexto (caixa, embalagem).</li>
+      <li>Editar levemente brilho/contraste no celular.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+if(localStorage.getItem('vip_logged')!=='true'){ window.location.href='vip-login.html'; }
+document.querySelectorAll('.copyBtn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const target = document.getElementById(btn.dataset.target);
+    navigator.clipboard.writeText(target.textContent).then(()=> alert('Textos copiados!'));
+  });
+});
+</script>
+</body>
+</html>

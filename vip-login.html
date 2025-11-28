@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Login Área VIP - Donapaula</title>
+<style>
+  :root{--pink:#ff4fa3;--bg:#fff4fa}
+  body{margin:0;font-family:Inter,Arial;background:var(--bg);display:flex;align-items:center;justify-content:center;height:100vh}
+  .card{width:92%;max-width:420px;background:#fff;padding:22px;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.08);text-align:center}
+  h1{margin:0 0 8px;color:var(--pink)}
+  p{color:#666;margin:6px 0 18px}
+  input{width:100%;padding:12px;border-radius:10px;border:1px solid #eee;margin-bottom:10px;font-size:16px}
+  button{width:100%;padding:12px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--pink),#ff2d7d);color:#fff;font-weight:700;font-size:16px}
+  small.note{display:block;margin-top:12px;color:#999;font-size:13px}
+  .hint{margin-top:12px;text-align:left;background:#fff2f7;padding:10px;border-radius:8px;border:1px solid #ffd7e8;color:#7a2438}
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>🔐 Área VIP — Donapaula</h1>
+    <p>Faça login para acessar recursos exclusivos para revendedores.</p>
+
+    <input id="user" placeholder="Usuário (ex: cliente01)" />
+    <input id="pass" placeholder="Senha" type="password" />
+
+    <button id="btnLogin">Entrar</button>
+
+    <small id="msg" style="display:block;color:#e02a2a;margin-top:10px"></small>
+
+    <div class="hint">
+      <strong>Observação:</strong><br>
+      Você (administrador) deve cadastrar os usuários diretamente no código, no array <code>VIP_USERS</code>.
+    </div>
+
+    <small class="note">Se já está logado será redirecionado automaticamente.</small>
+  </div>
+
+<script>
+// ====== CADASTRE AQUI OS USUÁRIOS VIP ======
+// formato: { user: "nome", pass: "senha" }
+const VIP_USERS = [
+  { user: "cliente01", pass: "1234" },
+  { user: "revendedor01", pass: "5555" }
+];
+// ==========================================
+
+if(localStorage.getItem('vip_logged')==='true'){
+  window.location.href = 'vip-area.html';
+}
+
+document.getElementById('btnLogin').addEventListener('click', ()=>{
+  const u = document.getElementById('user').value.trim();
+  const p = document.getElementById('pass').value.trim();
+  const ok = VIP_USERS.find(x=> x.user===u && x.pass===p);
+  const msg = document.getElementById('msg');
+  if(ok){
+    localStorage.setItem('vip_logged','true');
+    localStorage.setItem('vip_user', u);
+    msg.style.color = '#2a8f3a';
+    msg.textContent = 'Login efetuado — redirecionando...';
+    setTimeout(()=> window.location.href = 'vip-area.html', 700);
+  } else {
+    msg.style.color = '#e02a2a';
+    msg.textContent = 'Usuário ou senha incorretos.';
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cupons VIP - Donapaula</title>
+<style>
+ :root{--pink:#ff4fa3}
+ body{margin:0;font-family:Inter,Arial;background:#fff4fa}
+ header{background:linear-gradient(90deg,var(--pink),#ff2d7d);padding:14px;color:#fff;text-align:center}
+ .wrap{max-width:700px;margin:12px auto;padding:14px}
+ .coupon{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:12px;background:#fff;border:1px solid #f0f0f0;margin-bottom:10px;box-shadow:0 6px 20px rgba(0,0,0,0.04)}
+ .code{font-weight:800;color:#222}
+ .copy{background:linear-gradient(90deg,var(--pink),#ff2d7d);color:#fff;padding:10px;border-radius:8px;border:0;cursor:pointer}
+ #toast{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;background:#333;color:#fff;padding:10px 14px;border-radius:8px;display:none}
+</style>
+</head>
+<body>
+<header>🎟️ Cupons Exclusivos VIP</header>
+<div class="wrap">
+  <div class="coupon">
+    <div><div class="code">CUPOMVIP10</div><div class="small">10% de desconto (válido para revenda)</div></div>
+    <button class="copy" data-code="CUPOMVIP10">Copiar</button>
+  </div>
+
+  <div class="coupon">
+    <div><div class="code">DONAPAULA20</div><div class="small">20% em combos selecionados</div></div>
+    <button class="copy" data-code="DONAPAULA20">Copiar</button>
+  </div>
+
+  <div class="coupon">
+    <div><div class="code">FRETEVIP</div><div class="small">Frete grátis (condições aplicam)</div></div>
+    <button class="copy" data-code="FRETEVIP">Copiar</button>
+  </div>
+
+  <div class="coupon">
+    <div><div class="code">CUPOMSEMANA</div><div class="small">Cupom rotativo (troque semanalmente)</div></div>
+    <button class="copy" data-code="CUPOMSEMANA">Copiar</button>
+  </div>
+</div>
+
+<div id="toast">Copiado!</div>
+
+<script>
+if(localStorage.getItem('vip_logged')!=='true'){ window.location.href='vip-login.html'; }
+
+const copies = document.querySelectorAll('.copy');
+const toast = document.getElementById('toast');
+copies.forEach(b=>{
+  b.addEventListener('click', ()=>{
+    const code = b.dataset.code;
+    navigator.clipboard.writeText(code).then(()=> {
+      toast.textContent = `Cupom ${code} copiado!`;
+      toast.style.display = 'block';
+      setTimeout(()=> toast.style.display='none',1500);
+    }).catch(()=> alert('Não foi possível copiar automaticamente. Selecione e copie manualmente: ' + code));
+  });
+});
+</script>
+</body>
+</html>
