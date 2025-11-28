@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cadastro de Revendedor - Donapaula</title>
+
+<style>
+  :root{
+    --pink:#ff4fa3;
+    --brown:#6b3f2f;
+    --bg:#fff4fa;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,Arial;
+    background:var(--bg);
+    padding:18px;
+  }
+  .wrap{max-width:720px;margin:0 auto}
+  .card{
+    background:var(--card);
+    padding:18px;
+    border-radius:14px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.05);
+  }
+  h1{
+    margin:0 0 6px;
+    color:var(--brown);
+    font-size:22px;
+    text-align:center;
+  }
+  p.lead{
+    margin:0 0 16px;
+    color:#666;
+    text-align:center;
+    font-size:15px;
+  }
+  label{
+    display:block;
+    margin-top:12px;
+    font-weight:600;
+    font-size:14px;
+  }
+  input,textarea,select{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    margin-top:6px;
+    font-size:15px;
+  }
+  textarea{min-height:90px;resize:vertical}
+  .btn{
+    width:100%;
+    margin-top:16px;
+    padding:12px;
+    background:linear-gradient(90deg,var(--pink),#ff2d7d);
+    border:0;
+    color:#fff;
+    font-weight:800;
+    font-size:16px;
+    border-radius:10px;
+    cursor:pointer;
+  }
+  .success{
+    display:none;
+    margin-top:12px;
+    padding:10px;
+    background:#e9ffe9;
+    border:1px solid #b3f0b3;
+    color:#0f7a0f;
+    border-radius:10px;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>Cadastro de Revendedor</h1>
+    <p class="lead">Preencha seus dados para análise e aprovação.</p>
+
+    <label>Nome completo *</label>
+    <input id="nome" placeholder="Ex: João da Silva">
+
+    <label>Nome do estabelecimento *</label>
+    <input id="empresa" placeholder="Ex: Mercadinho Central">
+
+    <label>Tipo de estabelecimento *</label>
+    <select id="tipo">
+      <option value="Loja">Loja</option>
+      <option value="Padaria">Padaria</option>
+      <option value="Mercado">Mercado</option>
+      <option value="Lanchonete">Lanchonete</option>
+      <option value="Restaurante">Restaurante</option>
+      <option value="Outro">Outro</option>
+    </select>
+
+    <label>WhatsApp *</label>
+    <input id="whatsapp" placeholder="5599999xxxx">
+
+    <label>Cidade e CEP*</label>
+    <input id="cidade" placeholder="Ex: Guaraciaba - 62300-000">
+
+    <label>Estado *</label>
+    <input id="estado" placeholder="CE">
+
+    <label>Usuário para login *</label>
+    <input id="usuario" placeholder="Ex: cliente01">
+
+    <label>Senha *</label>
+    <input id="senha" type="password" placeholder="Digite sua senha">
+
+    <label>Observações (opcional)</label>
+    <textarea id="obs" placeholder="Horário de entrega, dúvidas etc..."></textarea>
+
+    <button class="btn" id="btnSend">📲 Enviar Cadastro pelo WhatsApp</button>
+
+    <div class="success" id="success">✔ Cadastro enviado pelo WhatsApp!</div>
+  </div>
+</div>
+
+<script>
+const PHONE_ADMIN = "558888170526"; // Coloque seu número completo do WhatsApp aqui (55 + DDD + número)
+const $ = id => document.getElementById(id);
+
+// Gerar ID automático (ex: REV-58291)
+function gerarID(){
+  const num = Math.floor(10000 + Math.random() * 90000);
+  return `REV-${num}`;
+}
+
+// Validação simples dos campos obrigatórios
+function validate(d){
+  if(!d.nome) return "Informe seu nome.";
+  if(!d.empresa) return "Informe o nome do estabelecimento.";
+  if(!d.whatsapp) return "Informe seu WhatsApp.";
+  if(!d.cidade) return "Informe sua cidade e CEP.";
+  if(!d.estado) return "Informe seu estado.";
+  if(!d.usuario) return "Crie um usuário para login.";
+  if(!d.senha) return "Crie uma senha.";
+  return null;
+}
+
+document.getElementById('btnSend').addEventListener('click', ()=>{
+
+  const d = {
+    nome: $('nome').value.trim(),
+    empresa: $('empresa').value.trim(),
+    tipo: $('tipo').value,
+    whatsapp: $('whatsapp').value.trim(),
+    cidade: $('cidade').value.trim(),
+    estado: $('estado').value.trim(),
+    usuario: $('usuario').value.trim(),
+    senha: $('senha').value.trim(),
+    obs: $('obs').value.trim(),
+    codigo: gerarID()
+  };
+
+  const err = validate(d);
+  if(err){ alert(err); return; }
+
+  let msg = `*NOVO CADASTRO DE REVENDEDOR*%0A%0A`;
+  msg += `*Código do Revendedor:* ${d.codigo}%0A`;
+  msg += `*Nome:* ${d.nome}%0A`;
+  msg += `*Estabelecimento:* ${d.empresa}%0A`;
+  msg += `*Tipo:* ${d.tipo}%0A`;
+  msg += `*WhatsApp:* ${d.whatsapp}%0A`;
+  msg += `*Cidade e CEP:* ${d.cidade} - ${d.estado}%0A`;
+  msg += `*Usuário:* ${d.usuario}%0A`;
+  msg += `*Senha:* ${d.senha}%0A`;
+  if(d.obs) msg += `%0A*Observações:* ${d.obs}%0A`;
+
+  const url = `https://wa.me/${PHONE_ADMIN}?text=${msg}`;
+
+  $('success').style.display = "block";
+  window.open(url, "_blank");
+});
+</script>
+<script src="seguranca.js"></script>
+  <script src="seguranca-obfuscado.js"></script>
+</body>
+</html>
