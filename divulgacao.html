@@ -1,80 +1,200 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Materiais - Donapaula</title>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Materiais de Divulgação - DonaPaula</title>
+
 <style>
- body{margin:0;font-family:Inter,Arial;background:#fff}
- header{background:linear-gradient(90deg,#ff4fa3,#ff2d7d);padding:14px;color:#fff;text-align:center}
- .wrap{max-width:760px;margin:12px auto;padding:14px}
- .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
- .card{background:#fff;padding:12px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.04);text-align:center}
- .btn{background:#ff4fa3;color:#fff;border:0;padding:10px;border-radius:8px;cursor:pointer}
- .snippet{background:#f7f7f7;padding:10px;border-radius:8px;overflow:auto;font-size:14px}
+body{
+  margin:0;
+  font-family:Inter,Arial;
+  background:#fff;
+  color:#333;
+}
+
+header{
+  background:linear-gradient(90deg,#ff4fa3,#ff2d7d);
+  padding:16px;
+  color:#fff;
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.wrap{
+  max-width:760px;
+  margin:12px auto;
+  padding:14px;
+}
+
+.info{
+  background:#fff4f8;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:14px;
+  font-size:14px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.card{
+  background:#fff;
+  padding:12px;
+  border-radius:12px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.06);
+  text-align:center;
+}
+
+.card img{
+  width:100%;
+  border-radius:8px;
+  margin-bottom:10px;
+}
+
+.btn{
+  background:#ff4fa3;
+  color:#fff;
+  border:0;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  width:100%;
+}
+
+.btn:hover{
+  background:#e63b8c;
+}
+
+.snippet{
+  background:#f7f7f7;
+  padding:12px;
+  border-radius:8px;
+  font-size:14px;
+  white-space:pre-wrap;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+footer{
+  margin-top:20px;
+  text-align:center;
+  font-size:13px;
+  color:#777;
+}
 </style>
 </head>
+
 <body>
-<header>🎨 Materiais de Divulgação</header>
+
+<header>🎨 Materiais de Divulgação – DonaPaula</header>
+
 <div class="wrap">
-  <div style="margin-bottom:10px">Abaixo você encontra espaços para colocar suas imagens e baixar modelos. Substitua os links pelos arquivos reais quando desejar.</div>
+
+  <div class="info">
+    📢 Área exclusiva para <strong>revendedores</strong>.  
+    Baixe banners, imagens e textos prontos para divulgar suas trufas.
+  </div>
 
   <div class="grid">
+
+    <!-- BANNER -->
     <div class="card">
-      <div style="height:140px;background:#faf0f7;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#d46b9a">📸 Imagem 1<br>Foto profissional</div>
-      <button class="btn" onclick="downloadSample('imagem1.jpg')">Download modelo</button>
+      <img src="divugacao1.png" alt="Banner Revendedores DonaPaula">
+      <a href="divugacao1.png" download class="btn">
+        ⬇️ Baixar Banner (.PNG)
+      </a>
     </div>
 
+    <!-- POST INSTAGRAM -->
     <div class="card">
-      <div style="height:140px;background:#fff7f0;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#d46b48">🏷️ Banner Promo</div>
-      <button class="btn" onclick="downloadSample('banner1.jpg')">Download modelo</button>
+      <img src="divugacao2.png" alt="Post Instagram DonaPaula">
+      <a href="divugacao2.png" download class="btn">
+        ⬇️ Baixar Post Instagram (.PNG)
+      </a>
     </div>
 
+    <!-- IMAGEM PRODUTO -->
     <div class="card">
-      <div style="height:140px;background:#f0fff4;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#37a16a">📋 Cardápio simples</div>
-      <button class="btn" onclick="downloadSample('cardapio.pdf')">Download modelo</button>
-    </div>
-
-    <div class="card">
-      <div style="height:140px;background:#f7fbff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#3a79d6">📱 Post para Instagram</div>
-      <button class="btn" onclick="downloadSample('post-instagram.png')">Download modelo</button>
+      <img src="divugacao3.png" alt="Imagem de Produto">
+      <a href="divugacao3.png" download class="btn">
+        ⬇️ Baixar Imagem Produto (.PNG)
+      </a>
     </div>
   </div>
 
-  <div style="margin-top:14px" class="card">
-    <h3>Textos prontos (WhatsApp / Instagram)</h3>
+  <!-- TEXTOS -->
+  <div class="card" style="margin-top:14px">
+    <h3>📋 Textos prontos para WhatsApp / Instagram</h3>
+
     <div class="snippet" id="snippet">
-Olá! Temos trufas fresquinhas: morango, brigadeiro, oreo. Promoção para hoje: combo 8 por preço especial. Quer reservar?
+🍫 Trufas DonaPaula 🍫
+
+Temos trufas fresquinhas e deliciosas!
+Sabores: Morango, Brigadeiro, Oreo, Beijinho e muito mais 😍
+
+📦 Pedido mínimo: 8 unidades
+🚚 Entrega rápida
+💰 Preço especial para combos
+
+📲 Chama no WhatsApp e garanta já!
     </div>
-    <div style="display:flex;gap:8px;margin-top:8px">
-      <button class="btn" onclick="copySnippet()">Copiar texto</button>
-      <button class="btn" onclick="downloadSnippet()">Baixar .txt</button>
+
+    <div class="actions">
+      <button class="btn" onclick="copySnippet()">📋 Copiar texto</button>
+      <button class="btn" onclick="downloadSnippet()">⬇️ Baixar texto (.TXT)</button>
     </div>
   </div>
+
+  <footer>
+    © DonaPaula – Área exclusiva para revendedores
+  </footer>
+
 </div>
 
 <script>
-if(localStorage.getItem('vip_logged')!=='true'){ window.location.href='vip-login.html'; }
-
-function downloadSample(name){
-  // link fictício: você deve trocar para arquivos reais hospedados
-  const url = 'https://example.com/modelos/'+name;
-  window.open(url,'_blank');
+// 🔒 Proteção VIP
+if(localStorage.getItem('vip_logged') !== 'true'){
+  window.location.href = 'vip-login.html';
 }
 
+// Copiar texto
 function copySnippet(){
   const txt = document.getElementById('snippet').innerText;
-  navigator.clipboard.writeText(txt).then(()=> alert('Texto copiado!'));
+  navigator.clipboard.writeText(txt).then(()=>{
+    alert('Texto copiado com sucesso!');
+  });
 }
 
+// Baixar texto
 function downloadSnippet(){
   const content = document.getElementById('snippet').innerText;
-  const blob = new Blob([content], {type: 'text/plain'});
+  const blob = new Blob([content], {type:'text/plain'});
   const url = URL.createObjectURL(blob);
+
   const a = document.createElement('a');
-  a.href = url; a.download = 'texto_divulgacao.txt';
-  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+  a.href = url;
+  a.download = 'texto_divulgacao_donapaula.txt';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
 }
 </script>
-  <script src="seguranca.js"></script>
-  <script src="seguranca-obfuscado.js"></script>
+
+<script src="seguranca.js"></script>
+<script src="seguranca-obfuscado.js"></script>
+
 </body>
 </html>
+
 
