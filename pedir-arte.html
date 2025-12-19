@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pedir Arte - DonaPaula</title>
+
+<style>
+body{margin:0;font-family:Arial;background:#f7f3f2}
+header{background:#ff4fa3;color:#fff;padding:16px;text-align:center;font-weight:bold}
+.card{background:#fff;margin:14px auto;max-width:500px;padding:16px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,.1)}
+label{display:block;margin-top:12px;font-weight:bold;font-size:14px}
+input,select,textarea{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  margin-top:6px;
+}
+button{
+  margin-top:16px;
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:10px;
+  background:#ff4fa3;
+  color:#fff;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+small{color:#666;font-size:13px}
+</style>
+</head>
+
+<body>
+<header>🎨 Pedido de Arte de Divulgação</header>
+
+<div class="card">
+  <label>Tipo de Arte</label>
+  <select id="tipo">
+    <option>Banner para WhatsApp</option>
+    <option>Post Instagram</option>
+    <option>Story Instagram</option>
+    <option>Cartaz Impressão</option>
+  </select>
+
+  <label>Produto a divulgar</label>
+  <input id="produto" placeholder="Ex: Trufa de Café">
+
+  <label>Preço / Promoção</label>
+  <input id="preco" placeholder="Ex: R$ 2,50 ou Leve 3 por 7">
+
+  <label>Observações</label>
+  <textarea id="obs" rows="4" placeholder="Cores, frases, público alvo..."></textarea>
+
+  <button onclick="enviar()">📤 Enviar Pedido</button>
+
+  <small>* O pedido será enviado diretamente para a equipe DonaPaula</small>
+</div>
+
+<script>
+if(localStorage.getItem('vip_logged')!=='true'){
+  window.location.href='vip-login.html';
+}
+
+function enviar(){
+  const user = localStorage.getItem('vip_user') || 'Revendedor';
+  const tipo = document.getElementById('tipo').value;
+  const produto = document.getElementById('produto').value;
+  const preco = document.getElementById('preco').value;
+  const obs = document.getElementById('obs').value;
+
+  const texto = 
+`🎨 *Pedido de Arte de Divulgação*
+👤 Revendedor: ${user}
+🖌️ Tipo: ${tipo}
+📦 Produto: ${produto}
+💰 Preço: ${preco}
+📝 Obs: ${obs}`;
+
+  const url = `https://wa.me/55SEUNUMEROAQUI?text=${encodeURIComponent(texto)}`;
+  window.open(url, '_blank');
+}
+</script>
+</body>
+</html>
