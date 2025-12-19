@@ -128,10 +128,10 @@
   </div>
 
 <script>
-// ====== CADASTRE AQUI OS USUÁRIOS VIP ======
+//// ====== CADASTRE AQUI OS USUÁRIOS VIP ======
 const VIP_USERS = [
   { user: "CHURRASCARIATEIXEIRA", pass: "CLIENTETOPVIP01" },
-  { user: "PADARIAASSABRANCA", pass: "CLIENTETOPVIP02" }
+  { user: "PADARIAASSABRANCA", pass: "CLIENTETOPVIP02" },
   { user: "DONAPAULA", pass: "DONAPAULA" }
 ];
 // ===========================================
@@ -152,36 +152,40 @@ function toggleSenha() {
 }
 
 
-// Se já estiver logado, redireciona
-if(localStorage.getItem('vip_logged') === 'true'){
+// Se já estiver logado, redireciona automaticamente
+if (localStorage.getItem('vip_logged') === 'true') {
   window.location.href = 'vip-area.html';
 }
 
 
 // Botão de login
-document.getElementById('btnLogin').addEventListener('click', ()=>{
+document.getElementById('btnLogin').addEventListener('click', () => {
   const u = document.getElementById('user').value.trim();
   const p = document.getElementById('pass').value.trim();
-  const ok = VIP_USERS.find(x=> x.user===u && x.pass===p);
   const msg = document.getElementById('msg');
 
-  if(ok){
-    localStorage.setItem('vip_logged','true');
+  const ok = VIP_USERS.find(x => x.user === u && x.pass === p);
+
+  if (ok) {
+    localStorage.setItem('vip_logged', 'true');
     localStorage.setItem('vip_user', u);
     msg.style.color = '#2a8f3a';
     msg.textContent = 'Login efetuado — redirecionando...';
-    setTimeout(()=> window.location.href = 'vip-area.html', 700);
+
+    setTimeout(() => {
+      window.location.href = 'vip-area.html';
+    }, 700);
   } else {
     msg.style.color = '#e02a2a';
     msg.textContent = 'Usuário ou senha incorretos.';
   }
 });
-</script>
 
 <script src="seguranca.js"></script>
 <script src="seguranca-obfuscado.js"></script>
 </body>
 </html>
+
 
 
 
