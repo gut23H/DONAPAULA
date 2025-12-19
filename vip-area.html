@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -31,7 +32,7 @@
 </style>
 </head>
 <body>
-<header>⭐ Área  — DonaPaula</header>
+<header>⭐ Área VIP — Donapaula</header>
   <div class="card">
     <h3>📦 Prazo de Entrega</h3>
     <p>Clientes VIP têm prioridade.  
@@ -55,7 +56,11 @@
   </div>
 
 </div>
-
+<a class="link card" href="pedir-arte.html">
+  <div class="icon">🖌️</div>
+  <h3>Pedir Arte de Divulgação</h3>
+  <p>Solicite banners e artes personalizadas</p>
+</a>
 <script>
 if(localStorage.getItem('vip_logged')!=='true'){ window.location.href='vip-login.html'; }
 document.getElementById('userName').textContent = localStorage.getItem('vip_user')||'Revendedor';
@@ -63,8 +68,7 @@ document.getElementById('btnLogout').addEventListener('click', ()=>{
   localStorage.removeItem('vip_logged'); localStorage.removeItem('vip_user'); window.location.href='vip-login.html';
 });
 </script>
+<script src="seguranca.js"></script>
+<script src="seguranca-obfuscado.js"></script>
 </body>
 </html>
-
-
-
