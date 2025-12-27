@@ -200,20 +200,11 @@
     <section>
       <div class="produtos" id="produtos"></div>
     </section>
-
 <div style="text-align:center;">
-  <a href="minetrufas.html" class="boton-trufa">
-   🍫 ENCOMENDA DE MINE TRUFAS [ENTRAR]
-  </a>
+  <button class="boton-trufa" onclick="window.location.href='divulgacao.html'">
+    🍫  Materiais de Divulgação
+  </button>
 </div>
-            <a href="vip-login.html" 
-   style="display:block;padding:15px;background:#8b3a2f;color:#fff;text-align:center;border-radius:12px;
-          text-decoration:none;font-weight:bold;margin-top:15px;">
-   Área para (REVENDEDORES) LOGIN E CADASTRO
-</a>
- 
-
-
 
     <section class="panel" id="panel-cart">
       <h2 style="margin-top:0">Seu Pedido</h2>
@@ -579,7 +570,6 @@ function enviarWhatsApp() {
     let toastTimer=null;
     function showToast(msg){ const t = $('toast'); t.textContent = msg || 'Produto adicionado ao carrinho!'; t.style.display = 'block'; if(toastTimer) clearTimeout(toastTimer); toastTimer = setTimeout(()=>{ t.style.display='none'; toastTimer=null; },2000); }
   </script>
-   <script src="seguranca.js"></script>
-  <script src="seguranca-obfuscado.js"></script>
+
 </body>
 </html>
