@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -172,7 +173,10 @@
     <button onclick="fecharPix()" class="btn" style="margin-top:6px">Cancelar</button>
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
 // ===================== PRODUTOS =====================
 const PRODUCTS = [
   {code:'T001',name:'Trufa de Morango',desc:'Trufa de morango 40g',retail:3.50,wholesale:2.00,img:'T001.png'},
@@ -226,7 +230,7 @@ function renderProducts(){
 }
 renderProducts();
 
-// ===================== CARRINHO =====================
+// ===================== FUNÇÕES DO CARRINHO =====================
 function addToCart(code){
   const produto = PRODUCTS.find(p=>p.code===code);
   const qty = parseInt(document.getElementById(`qty-${code}`).value) || 1;
@@ -284,7 +288,7 @@ btnOpenCart.addEventListener("click", () => {
 
 // ===================== LIMPAR CARRINHO =====================
 document.getElementById("btn-clear").addEventListener("click", ()=>{
-  cart=[];
+  cart = [];
   renderCart();
 });
 
@@ -313,13 +317,13 @@ document.getElementById("btn-apply").addEventListener("click",()=>{
 });
 
 // ===================== TOAST =====================
-let toastTimer=null;
+let toastTimer = null;
 function showToast(msg){
-  const t=document.getElementById("toast");
-  t.innerText=msg;
+  const t = document.getElementById("toast");
+  t.innerText = msg;
   t.style.display="block";
   if(toastTimer) clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>{ t.style.display="none"; toastTimer=null; },2000);
+  toastTimer = setTimeout(()=>{ t.style.display="none"; toastTimer=null; },2000);
 }
 
 // ===================== BADGE =====================
@@ -330,34 +334,28 @@ function updateCartBadge(){
   else badge.style.display="none";
 }
 
-// ===================== PIX =====================
-function gerarPixPagamento(valor, descricao) {
+// ===================== PIX (SEM DESCRIÇÃO) =====================
+function gerarPixPagamento(valor){
   const chave = "gustavopaulo2283@gmail.com";
   const nome = "DonaPaula Trufas";
   const cidade = "GUARACIABA";
 
   function tlv(id,value){ return id + value.length.toString().padStart(2,"0") + value; }
-
-  let valorStr = valor.toFixed(2);
-
   let payload = tlv("00","01") +
                 tlv("26", tlv("00","BR.GOV.BCB.PIX")+tlv("01",chave)) +
-                tlv("52","0000") +
-                tlv("53","986") +
-                tlv("54",valorStr) +
-                tlv("58","BR") +
-                tlv("59",nome.substring(0,25)) +
-                tlv("60",cidade.substring(0,15)) +
-                tlv("62",tlv("05",descricao.substring(0,50)));
+                tlv("52","0000") + tlv("53","986") +
+                tlv("54",valor.toFixed(2)) +
+                tlv("58","BR") + tlv("59",nome.substring(0,25)) +
+                tlv("60",cidade.substring(0,15));
 
   payload += "6304" + crc16(payload + "6304");
 
   const modal = document.getElementById("pix-modal");
   modal.style.display = "flex";
-  document.getElementById("pix-resumo").innerText = `Total a pagar: R$ ${valorStr}`;
-  document.getElementById("pix-qrcode").innerHTML = "";
+  document.getElementById("pix-resumo").innerText = `Total a pagar: R$ ${valor.toFixed(2)}`;
+  document.getElementById("pix-qrcode").innerHTML="";
   new QRCode("pix-qrcode",{text:payload,width:220,height:220});
-  document.getElementById("pix-copia").value = payload;
+  document.getElementById("pix-copia").value=payload;
 }
 
 function copiarPix(){
@@ -366,7 +364,9 @@ function copiarPix(){
   document.execCommand("copy");
   alert("PIX copiado!");
 }
+
 function fecharPix(){ document.getElementById("pix-modal").style.display="none"; }
+
 function crc16(str){
   let crc=0xFFFF;
   for(let c=0;c<str.length;c++){ crc ^= str.charCodeAt(c)<<8; for(let i=0;i<8;i++) crc = crc &0x8000 ? (crc<<1)^0x1021 : crc<<1; }
@@ -375,8 +375,9 @@ function crc16(str){
 
 // ===================== FINALIZAR PEDIDO =====================
 document.getElementById("btn-toggle-form").addEventListener("click",()=>{
-  document.getElementById("panel-form").style.display="block";
-  document.getElementById("panel-cart").scrollIntoView({behavior:"smooth"});
+  const form = document.getElementById("panel-form");
+  form.style.display = "block";
+  form.scrollIntoView({behavior:"smooth"});
 });
 
 document.getElementById("btn-whatsapp").addEventListener("click",function(e){
@@ -388,13 +389,11 @@ document.getElementById("btn-whatsapp").addEventListener("click",function(e){
   const discount = parseFloat(localStorage.getItem('donapaula_discount')||0);
   const total = subtotal + shipping - discount;
 
-  const endereco = `${document.getElementById("inp-street").value}, ${document.getElementById("inp-number").value}, ${document.getElementById("inp-neigh").value}, ${document.getElementById("inp-city").value}, CEP ${document.getElementById("inp-cep").value}`;
-
   let descricao = "Pedido de Trufas:\n";
   cart.forEach(item=>{ descricao += `- ${item.name} x ${item.qty} = R$ ${calcItemPrice(item).toFixed(2)}\n`; });
-  descricao += `Subtotal: R$ ${subtotal.toFixed(2)}\nFrete: R$ ${shipping.toFixed(2)}\nDesconto: R$ ${discount.toFixed(2)}\nTotal: R$ ${total.toFixed(2)}\nEndereço: ${endereco}`;
+  descricao += `Subtotal: R$ ${subtotal.toFixed(2)}\nFrete: R$ ${shipping.toFixed(2)}\nDesconto: R$ ${discount.toFixed(2)}\nTotal: R$ ${total.toFixed(2)}\nForma de pagamento: PIX`;
 
-  gerarPixPagamento(total, descricao);
+  gerarPixPagamento(total);
 
   const modal = document.querySelector("#pix-modal div");
   if(!document.getElementById("btn-ja-paguei")){
@@ -404,9 +403,8 @@ document.getElementById("btn-whatsapp").addEventListener("click",function(e){
     btnJaPaguei.className="btn-primary";
     btnJaPaguei.style.marginTop="12px";
     btnJaPaguei.onclick = ()=>{
-      alert("✅ Pagamento registrado. Aguarde a confirmação via WhatsApp!");
-      const phone="5588988123456"; // seu WhatsApp
-      const msg=encodeURIComponent(descricao);
+      const phone="5588988123456"; // WhatsApp da loja
+      const msg = encodeURIComponent(descricao);
       window.open(`https://wa.me/${phone}?text=${msg}`,"_blank");
       fecharPix();
       cart=[];
@@ -418,5 +416,3 @@ document.getElementById("btn-whatsapp").addEventListener("click",function(e){
 </script>
 
 
-</body>
-</html>
