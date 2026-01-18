@@ -14,7 +14,6 @@
       --rounded:12px;
       --gap:12px;
     }
-
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--muted); color:#333}
     a{color:inherit}
@@ -54,263 +53,155 @@
     footer{padding:30px 14px 100px;text-align:center;color:#666;font-size:13px}
     @media(min-width:700px){ .container{max-width:700px} .produtos{grid-template-columns:repeat(3,1fr)} .cart-container{right:24px;bottom:24px} }
 
-
-
-    /* Estilo da barra de pesquisa */
-.search-bar {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 14px;
-  background: #fff;
-  padding: 6px 10px;
-  border-radius: 12px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
-  align-items: center;
-}
-
-.search-bar input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #eee;
-  outline: none;
-  font-size: 14px;
-}
-
-.search-bar input:focus {
-  border-color: var(--brown);
-}
-
-.search-bar button {
-  background: var(--brown);
-  color: #fff;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 700;
-  transition: background 0.2s ease;
-}
-
-.search-bar button:hover {
-  background: #59322a;
-}
-.btn-revenda {
-  display: block;
-  background: #ff0077;
-  color: #fff;
-  padding: 15px;
-  text-align: center;
-  margin: 20px auto;
-  width: 90%;
-  font-size: 18px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.btn-revenda:hover {
-  background: #e6006b;
-}
-.boton-trufa {
-  display: inline-block;
-  padding: 14px 22px;
-  background: linear-gradient(45deg, #ff4fa3, #ff78bd);
-  color: #fff;
-  font-weight: bold;
-  font-family: Arial;
-  text-decoration: none;
-  border-radius: 12px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(255, 79, 163, 0.4);
-  transition: transform 0.2s ease;
-}
-
-.boton-trufa:hover {
-  transform: scale(1.05);
-}
-
-/* BRILHO ANIMADO */
-.boton-trufa::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.6),
-    transparent
-  );
-  transform: skewX(-25deg);
-  animation: brilho 2s infinite;
-}
-
-@keyframes brilho {
-  0%   { left: -100%; }
-  100% { left: 150%; }
-}
-    .muted {
-  font-weight: 600;
-  color: #e91e63;
-  background: #ffe4ec;
-  padding: 3px 6px;
-  border-radius: 5px;
-  display: inline-block;
-  font-size: 10px; /* tamanho menor */
-}
-    .topo-info {
-  margin-top: 4px;
-  background: #ffe4ec;
-  color: #6b3f2f;
-  padding: 6px 10px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  display: inline-block;
-}
-
+    .search-bar {display: flex;gap: 8px;margin-bottom: 14px;background: #fff;padding: 6px 10px;border-radius: 12px;box-shadow: 0 6px 14px rgba(0,0,0,0.06);align-items: center;}
+    .search-bar input {flex: 1;padding: 10px;border-radius: 10px;border: 1px solid #eee;outline: none;font-size: 14px;}
+    .search-bar input:focus {border-color: var(--brown);}
+    .search-bar button {background: var(--brown);color: #fff;border: none;padding: 10px 14px;border-radius: 10px;cursor: pointer;font-size: 16px;font-weight: 700;transition: background 0.2s ease;}
+    .search-bar button:hover {background: #59322a;}
+    .boton-trufa {display: inline-block;padding: 14px 22px;background: linear-gradient(45deg, #ff4fa3, #ff78bd);color: #fff;font-weight: bold;font-family: Arial;text-decoration: none;border-radius: 12px;position: relative;overflow: hidden;box-shadow: 0 4px 12px rgba(255, 79, 163, 0.4);transition: transform 0.2s ease;}
+    .boton-trufa:hover {transform: scale(1.05);}
+    .boton-trufa::before {content: "";position: absolute;top: 0;left: -100%;width: 100%;height: 100%;background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.6), transparent);transform: skewX(-25deg);animation: brilho 2s infinite;}
+    @keyframes brilho {0%   { left: -100%; }100% { left: 150%; }}
+    .muted {font-weight: 600;color: #e91e63;background: #ffe4ec;padding: 3px 6px;border-radius: 5px;display: inline-block;font-size: 10px;}
+    .topo-info {margin-top: 4px;background: #ffe4ec;color: #6b3f2f;padding: 6px 10px;border-radius: 8px;font-size: 12px;font-weight: 700;display: inline-block;}
   </style>
 </head>
 <body>
-  
  <header class="topo">
   <div class="brand">
     <h1>Feirão de Trufas DonaPaula</h1>
     <small>Rua Senador Catunda, Centro — Guaraciaba do Norte/CE — CEP 62380-000</small>
-    <span class="topo-info">
-      🎉 Encomendas para festas, eventos e comércio
-      - TRUFAS MEDIDAS GRANDE - 
-    </span>
+    <span class="topo-info">🎉 Encomendas para festas, eventos e comércio - TRUFAS MEDIDAS GRANDE - </span>
   </div>
 </header>
-
-
 
 <div class="search-bar">
   <input type="text" id="search" placeholder="Pesquisar trufas..." />
   <button id="btn-search">🔍</button>
 </div>
 
+<main class="container">
+  <section class="slider" aria-label="Slider de trufas">
+    <div class="slides" id="slides">
+      <div class="slide"><img src="banner4.png" alt="Trufa 1"/></div>
+      <div class="slide"><img src="banner5.png" alt="Trufa 2"/></div>
+      <div class="slide"><img src="banner6.png" alt="Trufa 3"/></div>
+    </div>
+    <div class="slider-controls" id="dots"></div>
+  </section>
 
+  <section class="produtos" id="produtos"></section>
 
-
-
-  <main class="container">
-    <section class="slider" aria-label="Slider de trufas">
-      <div class="slides" id="slides">
-       <div class="slide"><img src="banner4.png" alt="Trufa 1"/></div>
-        <div class="slide"><img src="banner5.png" alt="Trufa 2"/></div>
-        <div class="slide"><img src="banner6.png" alt="Trufa 3"/></div>
-      </div>
-      
-      <div class="slider-controls" id="dots"></div>
-    </section>
-    
-<!-- Mini vídeo flutuante -->
-    <section>
-      <div class="produtos" id="produtos"></div>
-    </section>
-<div style="text-align:center;">
-  <button class="boton-trufa" onclick="window.location.href='divulgacao.html'">
-    🍫  Materiais de Divulgação
-  </button>
-</div>
-
-    <section class="panel" id="panel-cart">
-      <h2 style="margin-top:0">Seu Pedido</h2>
-      <div class="cart-list" id="cart-list"></div>
-      <div style="display:flex;justify-content:space-between;margin-top:8px;align-items:center">
-        <small class="muted">Subtotal:</small>
-        <strong id="subtotal">R$ 0,00</strong>
-      </div>
-      <div style="margin-top:8px;display:flex;gap:8px">
-        <button class="btn" id="btn-clear">Limpar Carrinho</button>
-        <button class="btn" id="btn-toggle-form">Finalizar Pedido</button>
-      </div>  
-    </section>
-
-    <section class="panel" id="panel-form" style="display:none">
-      <h3>Entrega, Frete Grátis Para Guaraciaba CEP: 62380-000</h3>
-      <input placeholder="Nome completo" id="inp-name" class="input" />
-      <input placeholder="CEP (somente números)" id="inp-cep" class="input" />
-      <input placeholder="Rua" id="inp-street" class="input" />
-      <input placeholder="Número" id="inp-number" class="input" />
-      <input placeholder="Bairro" id="inp-neigh" class="input" />
-      <input placeholder="Cidade" id="inp-city" class="input" />
-      <input placeholder="Telefone/WhatsApp" id="inp-tel" class="input" />
-
-      <h4>Tem cupom?</h4>
-      <div style="display:flex;gap:8px;margin-bottom:8px">
-        <input id="inp-coupon" class="input" placeholder="Insira o cupom" />
-        <button id="btn-apply" class="btn">Aplicar</button>
-      </div>
-
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <small class="muted">Taxa de entrega:</small>
-        <strong id="shipping">R$ 0,00</strong>
-      </div>
-
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <small class="muted">Desconto:</small>
-        <strong id="discount">R$ 0,00</strong>
-      </div>
-
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <small class="muted">Total:</small>
-        <strong id="total">R$ 0,00</strong>
-      </div>
-<div class="info-entrega">
-  <h3>📦 Prazo de Entrega</h3>
-  <p>➡️ Entregas para <strong>Guaraciaba do Norte (CEP 62380000)</strong>:  
-     <strong>1 dia útil</strong></p>
-
-  <p>➡️ Entregas para outras cidades:  
-     <strong>2 dias úteis</strong></p>
-</div>
-      <div style="display:flex;gap:8px">
-        <button id="btn-whatsapp" class="btn-primary" data-whats-trigger>Finalizar pedido</button>
-      </div>
-    </section>
-
-    <footer>
-</div>
-<a href="reclamacoes.html" 
-   style="display:block;padding:12px;background:#caa191;color:#fff;text-align:center;border-radius:10px;text-decoration:none;font-weight:bold;">
-   📢 Fazer Reclamação
-</a>
-    </footer>
-  </main>
-
-  <div class="cart-container">
-    <button id="btn-open-cart" class="cart-btn">🛒 Carrinho</button>
-    <span id="cart-badge" class="cart-badge">0</span>
+  <div style="text-align:center;">
+    <button class="boton-trufa" onclick="window.location.href='divulgacao.html'">
+      🍫 Materiais de Divulgação
+    </button>
   </div>
 
-  <div id="toast" class="toast">Produto adicionado ao carrinho!</div>
+  <section class="panel" id="panel-cart">
+    <h2 style="margin-top:0">Seu Pedido</h2>
+    <div class="cart-list" id="cart-list"></div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px;align-items:center">
+      <small class="muted">Subtotal:</small>
+      <strong id="subtotal">R$ 0,00</strong>
+    </div>
+    <div style="margin-top:8px;display:flex;gap:8px">
+      <button class="btn" id="btn-clear">Limpar Carrinho</button>
+      <button class="btn" id="btn-toggle-form">Finalizar Pedido</button>
+    </div>  
+  </section>
 
+  <section class="panel" id="panel-form" style="display:none">
+    <h3>Entrega, Frete Grátis Para Guaraciaba CEP: 62380-000</h3>
+    <input placeholder="Nome completo" id="inp-name" class="input" />
+    <input placeholder="CEP (somente números)" id="inp-cep" class="input" />
+    <input placeholder="Rua" id="inp-street" class="input" />
+    <input placeholder="Número" id="inp-number" class="input" />
+    <input placeholder="Bairro" id="inp-neigh" class="input" />
+    <input placeholder="Cidade" id="inp-city" class="input" />
+    <input placeholder="Telefone/WhatsApp" id="inp-tel" class="input" />
+    <h4>Tem cupom?</h4>
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <input id="inp-coupon" class="input" placeholder="Insira o cupom" />
+      <button id="btn-apply" class="btn">Aplicar</button>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <small class="muted">Taxa de entrega:</small>
+      <strong id="shipping">R$ 0,00</strong>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <small class="muted">Desconto:</small>
+      <strong id="discount">R$ 0,00</strong>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <small class="muted">Total:</small>
+      <strong id="total">R$ 0,00</strong>
+    </div>
+    <div class="info-entrega">
+      <h3>📦 Prazo de Entrega</h3>
+      <p>➡️ Entregas para <strong>Guaraciaba do Norte (CEP 62380000)</strong>: <strong>1 dia útil</strong></p>
+      <p>➡️ Entregas para outras cidades: <strong>2 dias úteis</strong></p>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button id="btn-whatsapp" class="btn-primary" data-whats-trigger>Finalizar pedido</button>
+    </div>
+  </section>
 
-  <script>
-    // Pesquisa de produtos
-const searchInput = document.getElementById('search');
-const searchBtn = document.getElementById('btn-search');
+  <footer>
+    <a href="reclamacoes.html" style="display:block;padding:12px;background:#caa191;color:#fff;text-align:center;border-radius:10px;text-decoration:none;font-weight:bold;">
+      📢 Fazer Reclamação
+    </a>
+  </footer>
+</main>
 
-function filterProducts() {
-  const query = searchInput.value.toLowerCase().trim();
-  const filtered = PRODUCTS.filter(p => 
-    p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query)
-  );
-  
-  // Renderiza apenas os produtos filtrados
-  produtosEl.innerHTML = '';
-  filtered.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'card';
+<div class="cart-container">
+  <button id="btn-open-cart" class="cart-btn">🛒 Carrinho</button>
+  <span id="cart-badge" class="cart-badge">0</span>
+</div>
+
+<div id="toast" class="toast">Produto adicionado ao carrinho!</div>
+
+<!-- PAGAMENTO PIX -->
+<div id="pix-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:999; align-items:center; justify-content:center;">
+  <div style="background:#fff; max-width:360px; width:90%; padding:16px; border-radius:16px; text-align:center;">
+    <h2 style="color:#6b3f2f;margin-top:0">💸 Pague com PIX</h2>
+    <p id="pix-resumo" style="font-size:14px;color:#444"></p>
+    <div id="pix-qrcode" style="margin:12px auto;"></div>
+    <textarea id="pix-copia" readonly style="width:100%;font-size:12px;padding:8px;border-radius:8px"></textarea>
+    <button onclick="copiarPix()" class="btn-primary" style="margin-top:8px">Copiar código PIX</button>
+    <button onclick="fecharPix()" class="btn" style="margin-top:6px">Cancelar</button>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script>
+// ===================== PRODUTOS =====================
+const PRODUCTS = [
+  {code:'T001',name:'Trufa de Morango',desc:'Trufa de morango 40g',retail:3.50,wholesale:2.00,img:'T001.png'},
+  {code:'T002',name:'Trufa de Abacaxi',desc:'Trufa de abacaxi 40g',retail:4.00,wholesale:2.00,img:'T002.png'},
+  {code:'T003',name:'Trufa de Brigadeiro',desc:'Trufa de brigadeiro 40g',retail:3.00,wholesale:2.00,img:'T003.png'},
+  {code:'T004',name:'Trufa de Beijinho',desc:'Trufa de beijinho 40g',retail:3.00,wholesale:2.00,img:'T004.png'},
+  {code:'T005',name:'Trufa de Café',desc:'Trufa de café 40g',retail:4.00,wholesale:2.30,img:'T005.png'},
+  {code:'T006',name:'Trufa de Castanha',desc:'Trufa de Castanha 40g',retail:4.50,wholesale:2.20,img:'T006.png'},
+  {code:'T007',name:'Trufa de Napolitano',desc:'Trufa de Napolitano 44g',retail:4.00,wholesale:2.10,img:'T007.png'},
+  {code:'T008',name:'Trufa de Oreo',desc:'Trufa oreo 40g',retail:4.50,wholesale:2.00,img:'T008.png'},
+  {code:'T009',name:'Trufa de Paçoca',desc:'Trufa paçoca 40g',retail:4.00,wholesale:2.00,img:'T009.png'},
+  {code:'T010',name:'Trufa de Coco Queimado',desc:'Trufa coco queimado 40g',retail:3.50,wholesale:2.10,img:'T010.png'},
+  {code:'T011',name:'Trufa de Maracujá',desc:'Trufa maracujá 40g',retail:3.50,wholesale:2.00,img:'T011.png'},
+  {code:'T012',name:'Trufa de Limão',desc:'Trufa limão 40g',retail:3.50,wholesale:2.00,img:'T012.png'},
+  {code:'T013',name:'Trufa de Amendoim',desc:'Trufa Amendoim 42g',retail:4.00,wholesale:2.20,img:'T013.png'},
+  {code:'T014',name:'Trufa de Doce de Leite',desc:'Trufa doce de leite 44g',retail:4.00,wholesale:2.20,img:'T014.png'},
+  {code:'T015',name:'Trufa de Chantilly',desc:'Trufa de chantilly 40g',retail:4.00,wholesale:2.00,img:'T015.png'},
+];
+
+// ===================== CARRINHO =====================
+let cart = [];
+
+// ===================== RENDERIZA PRODUTOS =====================
+function renderProducts(){
+  const container = document.getElementById("produtos");
+  container.innerHTML = "";
+  PRODUCTS.forEach(p=>{
+    const card = document.createElement("div");
+    card.className = "card";
     card.innerHTML = `
       <img src="${p.img}" alt="${p.name}">
       <h3>${p.name}</h3>
@@ -318,273 +209,214 @@ function filterProducts() {
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
         <div>
           <div class="muted">Varejo:</div>
-          <div class="price">${formatBRL(p.retail)}</div>
+          <div class="price">R$ ${p.retail.toFixed(2)}</div>
         </div>
         <div>
           <div class="muted">Atacado (20+):</div>
-          <div class="muted">${formatBRL(p.wholesale)}</div>
+          <div class="muted">R$ ${p.wholesale.toFixed(2)}</div>
         </div>
       </div>
       <div class="row">
         <input type="number" min="1" value="1" class="qty" id="qty-${p.code}">
-        <button class="btn" data-code="${p.code}">Adicionar</button>
+        <button class="btn" onclick="addToCart('${p.code}')">Adicionar</button>
       </div>
     `;
-    produtosEl.appendChild(card);
+    container.appendChild(card);
   });
 }
+renderProducts();
 
-// Evento para filtrar ao digitar
-searchInput.addEventListener('input', filterProducts);
-// Também pode filtrar ao clicar no botão
-searchBtn.addEventListener('click', filterProducts);
-    
- const PRODUCTS = [
-  {code:'T001',name:'Trufa de Morango ',desc:'Trufa de morango 40g(Relativo)',retail:3.50,wholesale:2.00,img:'T001.png'},
-  {code:'T002',name:'Trufa de Abacaxi',desc:'Trufa de abacaxi 40g(Relativo)',retail:4.00,wholesale:2.00,img:'T002.png'},
-  {code:'T003',name:'Trufa de Brigadeiro',desc:'Trufa de brigadeiro 40g(Relativo)',retail:3.00,wholesale:2.00,img:'T003.png'},
-  {code:'T004',name:'Trufa de Beijinho',desc:'Trufa de beijinho 40g(Relativo)',retail:3.00,wholesale:2.00,img:'T004.png'}, // Ajustado
-  {code:'T005',name:'Trufa de Café',desc:'Trufa de café 40g(Relativo)',retail:4.00,wholesale:2.30,img:'T005.png'},
-  {code:'T006',name:'Trufa de Castanha',desc:'Trufa de Castanha 40g(Relativo)',retail:4.50,wholesale:2.20,img:'T006.png'}, // Ajustado
-  {code:'T007',name:'Trufa de Napolitano',desc:'Trufa de Napolitano 44g(Relativo)',retail:4.00,wholesale:2.10,img:'T007.png'}, // Ajustado
-  {code:'T008',name:'Trufa de Oreo',desc:'Trufa oreo 40g(Relativo)' ,retail:4.50,wholesale:2.00,img:'T008.png'},
-  {code:'T009',name:'Trufa de Paçoca',desc:'Trufa paçoca 40g(Relativo)',retail:4.00,wholesale:2.00,img:'T009.png'},
-  {code:'T010',name:'Trufa de Coco Queimado',desc:'Trufa coco queimado 40g(Relativo)',retail:3.50,wholesale:2.10,img:'T010.png'},
-  {code:'T011',name:'Trufa de Maracujá',desc:'Trufa maracujá 40g(Relativo)',retail:3.50,wholesale:2.00,img:'T011.png'},
-  {code:'T012',name:'Trufa de Limão',desc:'Trufa limão 40g(Relativo)',retail:3.50,wholesale:2.00,img:'T012.png'},
-  {code:'T013',name:'Trufa de Amendoim',desc:'Trufa Amendoim 42g(Relativo)',retail:4.00,wholesale:2.20,img:'T013.png'}, // Ajustado
-  {code:'T014',name:'Trufa de Doce de Leite',desc:'Trufa doce de leite 44g(Relativo)',retail:4.00,wholesale:2.20,img:'T014.png'}, // Ajustado
-  {code:'T015',name:'Trufa de Chantilly',desc:'Trufa de chantilly 40g(Relativo)',retail:4.00,wholesale:2.00,img:'T015.png'}, // Ajustado
-  
-];
-
-    const $ = (id)=>document.getElementById(id);
-    const formatBRL = v => 'R$ '+v.toFixed(2).replace('.',',');
-
-    // Slider
-    const slidesEl = $('slides');
-    const dotsEl = $('dots');
-    let current = 0;
-    function renderDots(){ dotsEl.innerHTML=''; for(let i=0;i<3;i++){ const d=document.createElement('div');d.className='dot'+(i===current?' active':'');d.addEventListener('click',()=>{goTo(i)});dotsEl.appendChild(d);} }
-    function goTo(i){current=i;slidesEl.style.transform=`translateX(-${i*100}%)`;renderDots()}
-    function nextSlide(){current=(current+1)%3;goTo(current)}
-    renderDots();setInterval(nextSlide,4000);
-
-    const produtosEl = $('produtos');
-    function renderProducts(){
-      produtosEl.innerHTML='';
-      PRODUCTS.forEach(p=>{
-        const card=document.createElement('div');card.className='card';
-        card.innerHTML=`
-          <img src="${p.img}" alt="${p.name}">
-          <h3>${p.name}</h3>
-          <p class="muted">${p.desc}</p>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-            <div>
-              <div class="muted">Varejo:</div>
-              <div class="price">${formatBRL(p.retail)}</div>
-            </div>
-            <div>
-              <div class="muted">Atacado (20+):</div>
-              <div class="muted">${formatBRL(p.wholesale)}</div>
-            </div>
-          </div>
-          <div class="row">
-            <input type="number" min="1" value="1" class="qty" id="qty-${p.code}">
-            <button class="btn" data-code="${p.code}">Adicionar</button>
-          </div>
-        `;
-        produtosEl.appendChild(card);
-      });
-    }
-    renderProducts();
-
-    const CART_KEY='donapaula_cart_v1';
-    function getCart(){return JSON.parse(localStorage.getItem(CART_KEY)||'[]')}
-    function saveCart(c){localStorage.setItem(CART_KEY,JSON.stringify(c));renderCart();updateCartBadge()}
-
-    function addToCart(code,qty){
-      const prod = PRODUCTS.find(p=>p.code===code);
-      if(!prod) return;
-      const cart=getCart();
-      const existing = cart.find(i=>i.code===code);
-      if(existing){ existing.qty += qty; }
-      else cart.push({code:prod.code,name:prod.name,qty:qty,retail:prod.retail,wholesale:prod.wholesale,img:prod.img});
-      saveCart(cart);
-      showToast(`${prod.name} adicionado ao carrinho!`);
-    }
-
-    produtosEl.addEventListener('click',e=>{
-      const btn = e.target.closest('button[data-code]');
-      if(!btn) return;
-      const code=btn.dataset.code; const qtyInput = $('qty-'+code);
-      const qty = Math.max(1,parseInt(qtyInput.value)||1);
-      addToCart(code,qty);
-    });
-
-    function calcItemPrice(item){ const unit = (item.qty>=20)? item.wholesale : item.retail; return unit*item.qty; }
-
-    function renderCart(){
-      const cartList = $('cart-list'); cartList.innerHTML='';
-      const cart=getCart();
-      let subtotal=0;
-      cart.forEach(it=>{
-        const div=document.createElement('div');div.className='cart-item';
-        const prod=PRODUCTS.find(p=>p.code===it.code)||{};
-        const price = calcItemPrice(it);
-        subtotal += price;
-        div.innerHTML = `
-          <img src="${it.img}" alt="${it.name}">
-          <div style="flex:1">
-            <strong style="display:block">${it.name}</strong>
-            <small class="muted">${it.qty} x ${(it.qty>=20)?formatBRL(it.wholesale):formatBRL(it.retail)}</small>
-          </div>
-          <div style="text-align:right">
-            <div>${formatBRL(price)}</div>
-            <div style="margin-top:6px;display:flex;gap:6px;justify-content:flex-end">
-              <button class="btn" data-action="remove" data-code="${it.code}" style="padding:6px;border-radius:8px">Remover</button>
-            </div>
-          </div>
-        `;
-        cartList.appendChild(div);
-      });
-      $('subtotal').textContent = formatBRL(subtotal);
-      updateTotals();
-    }
-
-    // remove
-    $('cart-list').addEventListener('click',e=>{
-      const btn = e.target.closest('button[data-action="remove"]');
-      if(!btn) return; const code=btn.dataset.code;
-      let cart=getCart(); cart = cart.filter(i=>i.code!==code); saveCart(cart);
-    });
-
-    // clear
-   // Substitua o listener antigo por este bloco
-(function(){
-  const clearBtn = document.getElementById('btn-clear');
-  if(!clearBtn){
-    console.warn('btn-clear não encontrado no DOM');
-    return;
-  }
-
-  clearBtn.addEventListener('click', ()=> {
-    try {
-      // 1) remover carrinho do localStorage
-      localStorage.removeItem(CART_KEY);
-
-      // 2) zerar frete e desconto guardados
-      localStorage.setItem('donapaula_shipping', 0);
-      localStorage.setItem('donapaula_discount', 0);
-
-      // 3) limpar campos de endereço / cupom / nome / telefone
-      const idsToClear = ['inp-name','inp-cep','inp-street','inp-number','inp-neigh','inp-city','inp-tel','inp-coupon'];
-      idsToClear.forEach(id => {
-        const el = document.getElementById(id);
-        if(el) el.value = '';
-      });
-
-      // 4) atualizar UI e badge
-      renderCart();
-      updateTotals();
-      updateCartBadge();
-
-      // 5) garantir que os mostradores vão para zero
-      const zero = 'R$ 0,00';
-      if(document.getElementById('subtotal')) document.getElementById('subtotal').textContent = zero;
-      if(document.getElementById('shipping')) document.getElementById('shipping').textContent = zero;
-      if(document.getElementById('discount')) document.getElementById('discount').textContent = zero;
-      if(document.getElementById('total')) document.getElementById('total').textContent = zero;
-
-      // feedback rápido
-      showToast('Carrinho limpo!');
-    } catch(err) {
-      console.error('Erro ao limpar carrinho:', err);
-      alert('Erro ao limpar o carrinho. Verifique o console.');
-    }
-  });
-})();
-
-
-    // toggle form
-    $('btn-toggle-form').addEventListener('click',()=>{ $('panel-form').style.display = $('panel-form').style.display === 'none' ? 'block' : 'none'; smoothScrollTo($('panel-form').offsetTop - 10); });
-
-    // open cart button
-    $('btn-open-cart').addEventListener('click',()=>{ window.scrollTo({top:0,behavior:'smooth'}); $('panel-cart').scrollIntoView({behavior:'smooth'}); });
-
-    function calcShipping(cep){ const clean = (cep||'').toString().replace(/\D/g,''); if(clean === '62380000') return 0.00; if(clean.length===8) return 20.00; return 0.00; }
-
-    function getSubtotal(){ const cart = getCart(); return cart.reduce((s,it)=> s + calcItemPrice(it), 0); }
-    function updateTotals(){ const subtotal = getSubtotal(); const shipping = parseFloat(localStorage.getItem('donapaula_shipping')||0); const discount = parseFloat(localStorage.getItem('donapaula_discount')||0); $('shipping').textContent = formatBRL(shipping); $('discount').textContent = formatBRL(discount); const total = Math.max(0, subtotal + shipping - discount); $('total').textContent = formatBRL(total); $('subtotal').textContent = formatBRL(subtotal); }
-
-    $('inp-cep').addEventListener('blur',()=>{ const cep = $('inp-cep').value || ''; const ship = calcShipping(cep); localStorage.setItem('donapaula_shipping',ship); updateTotals(); });
-// cupon
-    $('btn-apply').addEventListener('click',()=>{ const c = ($('inp-coupon').value||'').trim().toUpperCase(); if(c === 'TRUFA10'){ const subtotal = getSubtotal(); const discount = +(subtotal * 0.10).toFixed(2); localStorage.setItem('donapaula_discount',discount); alert('Cupom aplicado: 10% OFF'); } else { localStorage.setItem('donapaula_discount',0); alert('Cupom inválido'); } updateTotals(); });
-
-
-
-// 🚨 NOVA FUNÇÃO: Verificar pedido mínimo
-function validarMinimos(totalQtd) {
-  if (totalQtd < 8) {
-    alert("Pedido mínimo é de 5 trufas. Adicione mais produtos ao carrinho.");
-    return false;
-  }
-  return true;
+// ===================== CARRINHO =====================
+function addToCart(code){
+  const produto = PRODUCTS.find(p=>p.code===code);
+  const qty = parseInt(document.getElementById(`qty-${code}`).value) || 1;
+  const existing = cart.find(c=>c.code===code);
+  if(existing){ existing.qty += qty; }
+  else cart.push({code:produto.code,name:produto.name,qty,retail:produto.retail,wholesale:produto.wholesale,img:produto.img});
+  renderCart();
+  showToast(`${produto.name} adicionado ao carrinho!`);
 }
 
-// 🚨 CAPTURAR CLIQUE DO BOTÃO E APLICAR A VALIDACAO
-document.getElementById("btn-whatsapp").addEventListener("click", function (e) {
-  e.preventDefault(); // impede envio duplicado
+function calcItemPrice(item){
+  return item.qty >= 20 ? item.wholesale*item.qty : item.retail*item.qty;
+}
 
-  const cart = getCart();
+function renderCart(){
+  const list = document.getElementById("cart-list");
+  list.innerHTML = "";
+  cart.forEach(item=>{
+    const price = calcItemPrice(item);
+    const div = document.createElement("div");
+    div.className = "cart-item";
+    div.innerHTML = `
+      <img src="${item.img}" alt="${item.name}">
+      <div style="flex:1">
+        <strong>${item.name}</strong>
+        <small class="muted">${item.qty} x ${item.qty>=20 ? item.wholesale.toFixed(2) : item.retail.toFixed(2)}</small>
+      </div>
+      <div style="text-align:right">
+        <div>R$ ${price.toFixed(2)}</div>
+        <div style="margin-top:6px;display:flex;gap:6px;justify-content:flex-end">
+          <button class="btn" onclick="removeFromCart('${item.code}')">Remover</button>
+        </div>
+      </div>
+    `;
+    list.appendChild(div);
+  });
+  updateTotals();
+  updateCartBadge();
+}
 
-  let totalQtd = 0;
-  cart.forEach(item => totalQtd += item.qty);
+function removeFromCart(code){
+  cart = cart.filter(c=>c.code!==code);
+  renderCart();
+}
 
-  // Aplica o pedido mínimo
-  if (!validarMinimos(totalQtd)) return;
-
-  // Se passou, chama a função original
-  enviarWhatsApp();
+// ===================== ABRIR/CLOSE CARRINHO =====================
+const btnOpenCart = document.getElementById("btn-open-cart");
+const panelCart = document.getElementById("panel-cart");
+btnOpenCart.addEventListener("click", () => {
+  panelCart.scrollIntoView({ behavior: "smooth" });
+  panelCart.style.transition = "box-shadow 0.3s ease";
+  panelCart.style.boxShadow = "0 0 20px rgba(107,63,47,0.5)";
+  setTimeout(() => { panelCart.style.boxShadow = "none"; }, 800);
 });
 
-// Função para continuar o envio normal
-function enviarWhatsApp() {
-  // Aqui chamamos o seu código original de envio:
-  const evt = new Event("click");
-  document.querySelector("[data-whats-trigger]").dispatchEvent(evt);
+// ===================== LIMPAR CARRINHO =====================
+document.getElementById("btn-clear").addEventListener("click", ()=>{
+  cart=[];
+  renderCart();
+});
+
+// ===================== TOTAL =====================
+function updateTotals(){
+  const subtotal = cart.reduce((acc,i)=>acc+calcItemPrice(i),0);
+  const shipping = parseFloat(localStorage.getItem('donapaula_shipping')||0);
+  const discount = parseFloat(localStorage.getItem('donapaula_discount')||0);
+  const total = subtotal + shipping - discount;
+  document.getElementById("subtotal").innerText = `R$ ${subtotal.toFixed(2)}`;
+  document.getElementById("shipping").innerText = `R$ ${shipping.toFixed(2)}`;
+  document.getElementById("discount").innerText = `R$ ${discount.toFixed(2)}`;
+  document.getElementById("total").innerText = `R$ ${total.toFixed(2)}`;
 }
 
+// ===================== CUPOM =====================
+document.getElementById("btn-apply").addEventListener("click",()=>{
+  const code = document.getElementById("inp-coupon").value.trim().toUpperCase();
+  let discount = 0;
+  if(code==="TRUFA10") discount = 10.0;
+  else if(code==="TRUFA5") discount = 5.0;
+  else if(code) return alert("Cupom inválido");
+  localStorage.setItem('donapaula_discount', discount);
+  updateTotals();
+  alert(`Cupom aplicado: R$ ${discount.toFixed(2)}`);
+});
 
+// ===================== TOAST =====================
+let toastTimer=null;
+function showToast(msg){
+  const t=document.getElementById("toast");
+  t.innerText=msg;
+  t.style.display="block";
+  if(toastTimer) clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{ t.style.display="none"; toastTimer=null; },2000);
+}
 
+// ===================== BADGE =====================
+function updateCartBadge(){
+  const badge = document.getElementById("cart-badge");
+  const totalQty = cart.reduce((acc,i)=>acc+i.qty,0);
+  if(totalQty>0){ badge.textContent = totalQty; badge.style.display="block"; }
+  else badge.style.display="none";
+}
 
-    $('btn-whatsapp').addEventListener('click',()=>{ const cart = getCart(); if(cart.length===0){ alert('Seu carrinho está vazio'); return; } const name = $('inp-name').value.trim(); const cep = $('inp-cep').value.trim(); const street = $('inp-street').value.trim(); const number = $('inp-number').value.trim(); const neigh = $('inp-neigh').value.trim(); const city = $('inp-city').value.trim(); const tel = $('inp-tel').value.trim(); if(!name || !cep || !street || !number || !neigh || !city || !tel){ alert('Preencha todos os campos de entrega'); return; } const shipping = parseFloat(localStorage.getItem('donapaula_shipping')||0); const discount = parseFloat(localStorage.getItem('donapaula_discount')||0); const subtotal = getSubtotal(); const total = (subtotal + shipping - discount).toFixed(2);
+// ===================== PIX =====================
+function gerarPixPagamento(valor, descricao) {
+  const chave = "gustavopaulo2283@gmail.com";
+  const nome = "DonaPaula Trufas";
+  const cidade = "GUARACIABA";
 
-      let itemsText = '';
-      cart.forEach(it =>{
-        const unit = (it.qty>=20)? it.wholesale : it.retail;
-        itemsText += `${it.name} - ${it.qty} x ${formatBRL(unit)} = ${formatBRL(unit*it.qty)}\n`;
-      });
+  function tlv(id,value){ return id + value.length.toString().padStart(2,"0") + value; }
 
-      const msg = `Olá, quero fazer um pedido no Feirão de Trufas DonaPaula:%0A%0AItens:%0A${encodeURIComponent(itemsText)}%0AEntrega:%0ANome: ${encodeURIComponent(name)}%0AEndere%C3%A7o: ${encodeURIComponent(street+', '+number+', '+neigh+', '+city+', CEP '+cep)}%0ATelefone/WhatsApp: ${encodeURIComponent(tel)}%0A%0ATaxa de entrega: ${formatBRL(shipping)}%0ADesconto: ${formatBRL(discount)}%0ATotal final do pedido: ${formatBRL(parseFloat(total))}%0A%0AAguardo confirma%C3%A7%C3%A3o!`;
+  let valorStr = valor.toFixed(2);
 
-      const phone = '+558888170526';
-      const url = `https://wa.me/${phone.replace(/\D/g,'')}?text=${msg}`;
-      window.open(url,'_blank');
-    });
+  let payload = tlv("00","01") +
+                tlv("26", tlv("00","BR.GOV.BCB.PIX")+tlv("01",chave)) +
+                tlv("52","0000") +
+                tlv("53","986") +
+                tlv("54",valorStr) +
+                tlv("58","BR") +
+                tlv("59",nome.substring(0,25)) +
+                tlv("60",cidade.substring(0,15)) +
+                tlv("62",tlv("05",descricao.substring(0,50)));
 
-    ['inp-name','inp-cep','inp-street','inp-number','inp-neigh','inp-city','inp-tel','inp-coupon'].forEach(id=>{ const el=$(id); el.addEventListener('input',()=> localStorage.setItem('donapaula_form_'+id,el.value)); el.value = localStorage.getItem('donapaula_form_'+id) || ''; });
+  payload += "6304" + crc16(payload + "6304");
 
-    function init(){ renderCart(); updateTotals(); updateCartBadge(); }
-    init();
+  const modal = document.getElementById("pix-modal");
+  modal.style.display = "flex";
+  document.getElementById("pix-resumo").innerText = `Total a pagar: R$ ${valorStr}`;
+  document.getElementById("pix-qrcode").innerHTML = "";
+  new QRCode("pix-qrcode",{text:payload,width:220,height:220});
+  document.getElementById("pix-copia").value = payload;
+}
 
-    function smoothScrollTo(pos){ if (typeof window === 'undefined') return; window.scrollTo({top: pos, behavior: 'smooth'}); }
+function copiarPix(){
+  const t=document.getElementById("pix-copia");
+  t.select();
+  document.execCommand("copy");
+  alert("PIX copiado!");
+}
+function fecharPix(){ document.getElementById("pix-modal").style.display="none"; }
+function crc16(str){
+  let crc=0xFFFF;
+  for(let c=0;c<str.length;c++){ crc ^= str.charCodeAt(c)<<8; for(let i=0;i<8;i++) crc = crc &0x8000 ? (crc<<1)^0x1021 : crc<<1; }
+  return (crc &0xFFFF).toString(16).toUpperCase().padStart(4,"0");
+}
 
-    function updateCartBadge(){ const badge = $('cart-badge'); const cart = getCart(); const total = cart.reduce((s,i)=> s + (i.qty||0), 0); if(total>0){ badge.textContent = total; badge.style.display='block'; } else { badge.style.display='none'; } }
+// ===================== FINALIZAR PEDIDO =====================
+document.getElementById("btn-toggle-form").addEventListener("click",()=>{
+  document.getElementById("panel-form").style.display="block";
+  document.getElementById("panel-cart").scrollIntoView({behavior:"smooth"});
+});
 
-    let toastTimer=null;
-    function showToast(msg){ const t = $('toast'); t.textContent = msg || 'Produto adicionado ao carrinho!'; t.style.display = 'block'; if(toastTimer) clearTimeout(toastTimer); toastTimer = setTimeout(()=>{ t.style.display='none'; toastTimer=null; },2000); }
-  </script>
+document.getElementById("btn-whatsapp").addEventListener("click",function(e){
+  e.preventDefault();
+  if(cart.length===0) return alert("Adicione produtos ao carrinho!");
+
+  const subtotal = cart.reduce((acc,i)=>acc+calcItemPrice(i),0);
+  const shipping = parseFloat(localStorage.getItem('donapaula_shipping')||0);
+  const discount = parseFloat(localStorage.getItem('donapaula_discount')||0);
+  const total = subtotal + shipping - discount;
+
+  const endereco = `${document.getElementById("inp-street").value}, ${document.getElementById("inp-number").value}, ${document.getElementById("inp-neigh").value}, ${document.getElementById("inp-city").value}, CEP ${document.getElementById("inp-cep").value}`;
+
+  let descricao = "Pedido de Trufas:\n";
+  cart.forEach(item=>{ descricao += `- ${item.name} x ${item.qty} = R$ ${calcItemPrice(item).toFixed(2)}\n`; });
+  descricao += `Subtotal: R$ ${subtotal.toFixed(2)}\nFrete: R$ ${shipping.toFixed(2)}\nDesconto: R$ ${discount.toFixed(2)}\nTotal: R$ ${total.toFixed(2)}\nEndereço: ${endereco}`;
+
+  gerarPixPagamento(total, descricao);
+
+  const modal = document.querySelector("#pix-modal div");
+  if(!document.getElementById("btn-ja-paguei")){
+    const btnJaPaguei = document.createElement("button");
+    btnJaPaguei.id="btn-ja-paguei";
+    btnJaPaguei.textContent="✅ Já Paguei";
+    btnJaPaguei.className="btn-primary";
+    btnJaPaguei.style.marginTop="12px";
+    btnJaPaguei.onclick = ()=>{
+      alert("✅ Pagamento registrado. Aguarde a confirmação via WhatsApp!");
+      const phone="5588988123456"; // seu WhatsApp
+      const msg=encodeURIComponent(descricao);
+      window.open(`https://wa.me/${phone}?text=${msg}`,"_blank");
+      fecharPix();
+      cart=[];
+      renderCart();
+    };
+    modal.appendChild(btnJaPaguei);
+  }
+});
+</script>
+
 
 </body>
 </html>
