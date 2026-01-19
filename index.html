@@ -179,7 +179,7 @@
   </style>
 </head>
 <body>
-  <div id="pix-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;align-items:center;justify-content:center">
+<div id="pix-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;align-items:center;justify-content:center">
   <div style="background:#fff;padding:20px;border-radius:14px;max-width:360px;width:100%;text-align:center">
     <h3>💸 Pagamento via PIX</h3>
 
@@ -188,7 +188,7 @@
     <div id="pix-qrcode" style="margin:14px auto"></div>
 
     <input id="pix-chave" readonly
-      value="01706441380"
+      value="017064413"
       style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;text-align:center;font-weight:bold">
 
     <button onclick="copiarPix()" class="btn" style="margin-top:10px">
@@ -615,22 +615,77 @@ function enviarWhatsApp() {
 
     let toastTimer=null;
     function showToast(msg){ const t = $('toast'); t.textContent = msg || 'Produto adicionado ao carrinho!'; t.style.display = 'block'; if(toastTimer) clearTimeout(toastTimer); toastTimer = setTimeout(()=>{ t.style.display='none'; toastTimer=null; },2000); }
-    // ================= PIX =================
-const PIX_CHAVE = '01706441380';
+// ================= PIX OFICIAL BACEN =================
+const PIX_CHAVE   = '01706441380'; // sua chave PIX
+const PIX_NOME    = 'Dona Paula';  // até 25 caracteres
+const PIX_CIDADE  = 'GUARACIABA';  // SEM espaço e SEM acento
 
+// ---- Funções EMV PIX ----
+function emv(id, value){
+  const size = value.length.toString().padStart(2,'0');
+  return id + size + value;
+}
+
+function crc16(payload){
+  let crc = 0xFFFF;
+  for (let i = 0; i < payload.length; i++) {
+    crc ^= payload.charCodeAt(i) << 8;
+    for (let j = 0; j < 8; j++) {
+      crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+    }
+  }
+  return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4,'0');
+}
+
+function gerarPix(valor){
+  const valorStr = valor.toFixed(2);
+
+  let payload =
+    emv('00','01') +
+    emv('26',
+      emv('00','BR.GOV.BCB.PIX') +
+      emv('01',PIX_CHAVE)
+    ) +
+    emv('52','0000') +
+    emv('53','986') +
+    emv('54',valorStr) +
+    emv('58','BR') +
+    emv('59',PIX_NOME) +
+    emv('60',PIX_CIDADE) +
+    emv('62', emv('05','PEDIDO'));
+
+  payload += '6304';
+  payload += crc16(payload);
+
+  return payload;
+}
+
+// ---- MODAL PIX ----
 function abrirPix(){
   const totalText = document.getElementById('total').textContent;
+  const valor = parseFloat(
+    totalText.replace('R$','').replace('.','').replace(',','.')
+  );
+
+  if(valor <= 0){
+    alert('Carrinho vazio');
+    return;
+  }
+
   document.getElementById('pix-valor').textContent = totalText;
+
+  const codigoPix = gerarPix(valor);
 
   const qrBox = document.getElementById('pix-qrcode');
   qrBox.innerHTML = '';
 
   new QRCode(qrBox, {
-    text: `PIX:${PIX_CHAVE}|VALOR:${totalText}`,
+    text: codigoPix,
     width: 220,
     height: 220
   });
 
+  document.getElementById('pix-chave').value = codigoPix;
   document.getElementById('pix-modal').style.display = 'flex';
 }
 
@@ -639,10 +694,11 @@ function fecharPix(){
 }
 
 function copiarPix(){
-  navigator.clipboard.writeText(PIX_CHAVE);
-  alert('Chave PIX copiada!');
+  navigator.clipboard.writeText(document.getElementById('pix-chave').value);
+  alert('PIX copia e cola copiado com valor!');
 }
 
+// ---- CONFIRMOU PAGAMENTO ----
 function confirmarPixPago(){
   fecharPix();
   enviarResumoPixWhatsApp();
@@ -650,12 +706,8 @@ function confirmarPixPago(){
 
 function enviarResumoPixWhatsApp(){
   const cart = getCart();
-  if(cart.length === 0){
-    alert('Carrinho vazio');
-    return;
-  }
-
   let itens = '';
+
   cart.forEach(it=>{
     const unit = (it.qty>=20)?it.wholesale:it.retail;
     itens += `${it.name} - ${it.qty} x ${formatBRL(unit)} = ${formatBRL(unit*it.qty)}\n`;
@@ -664,22 +716,19 @@ function enviarResumoPixWhatsApp(){
   const total = document.getElementById('total').textContent;
 
   const msg = `
-PAGAMENTO VIA PIX CONFIRMADO ✅
+💸 PAGAMENTO VIA PIX REALIZADO
 
-Itens:
 ${itens}
 
-Total pago: ${total}
-Chave PIX: ${PIX_CHAVE}
+Total: ${total}
+PIX: ${PIX_CHAVE}
 
 Aguardando confirmação 🙏
 `;
 
   const phone = '558888170526';
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-  window.open(url,'_blank');
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank');
 }
-
   </script>
 
 </body>
