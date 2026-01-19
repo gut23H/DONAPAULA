@@ -331,54 +331,87 @@ function updateCartBadge(){
   else badge.style.display="none";
 }
 
-// ===================== PIX (100% FUNCIONAL LOCAL) =====================
-function tlv(id,value){
-  const bytes = new TextEncoder().encode(value);
-  return id + bytes.length.toString().padStart(2,"0") + value;
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+// ===================== PIX PADRÃO BACEN =====================
+
+// Remove acentos e caracteres inválidos
+function limparTexto(texto){
+  return texto
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^A-Za-z0-9 ]/g, "");
 }
 
-function gerarPixPagamento(valor){
-  const chave = "01706441380"; // CPF sem ponto/traço
-  const nome = "DonaPaula";
-  const cidade = "GUARACIABA";
-
-  let payload = "";
-  payload += tlv("00","01");
-  payload += tlv("26", tlv("00","BR.GOV.BCB.PIX")+tlv("01",chave));
-  payload += tlv("52","0000");
-  payload += tlv("53","986");
-  payload += tlv("54", valor.toFixed(2)); // ponto decimal
-  payload += tlv("58","BR");
-  payload += tlv("59", nome.substring(0,25));
-  payload += tlv("60", cidade.substring(0,15));
-  payload += "6304";
-  payload += crc16(payload + "6304");
-
-  const modal = document.getElementById("pix-modal");
-  modal.style.display = "flex";
-  document.getElementById("pix-resumo").innerText = `Total a pagar: R$ ${valor.toFixed(2)}`;
-  document.getElementById("pix-qrcode").innerHTML="";
-  new QRCode("pix-qrcode",{text:payload,width:220,height:220});
-  document.getElementById("pix-copia").value=payload;
+// Função TLV (ID + tamanho + valor)
+function tlv(id, valor){
+  return id + valor.length.toString().padStart(2,"0") + valor;
 }
 
-function copiarPix(){
-  const t=document.getElementById("pix-copia");
-  t.select();
-  document.execCommand("copy");
-  alert("PIX copiado!");
-}
-
-function fecharPix(){ document.getElementById("pix-modal").style.display="none"; }
-
-function crc16(str){
-  let crc=0xFFFF;
-  for(let c=0;c<str.length;c++){
-    crc ^= str.charCodeAt(c)<<8;
-    for(let i=0;i<8;i++) crc = crc &0x8000 ? (crc<<1)^0x1021 : crc<<1;
+// Gera CRC16 (obrigatório no PIX)
+function crc16(payload){
+  let crc = 0xFFFF;
+  for (let i = 0; i < payload.length; i++) {
+    crc ^= payload.charCodeAt(i) << 8;
+    for (let j = 0; j < 8; j++) {
+      crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+    }
   }
-  return (crc &0xFFFF).toString(16).toUpperCase().padStart(4,"0");
+  return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
 }
+
+// ===================== GERAR PIX =====================
+function gerarPix(valor){
+
+  // 🔑 CONFIGURAÇÕES
+  const chavePix = "01706441380"; // SUA CHAVE PIX
+  const nomeRecebedor = limparTexto("Dona Paula").toUpperCase().substring(0,25);
+  const cidade = "GUARACIABADONORTE"; // SEM ACENTO
+  const txid = "***"; // padrão BACEN
+
+  // MONTA PAYLOAD
+  let payload =
+    tlv("00","01") +
+    tlv("26",
+      tlv("00","BR.GOV.BCB.PIX") +
+      tlv("01", chavePix)
+    ) +
+    tlv("52","0000") +
+    tlv("53","986") +
+    tlv("54", parseFloat(valor).toFixed(2)) +
+    tlv("58","BR") +
+    tlv("59", nomeRecebedor) +
+    tlv("60", cidade) +
+    tlv("62", tlv("05", txid));
+
+  payload += "6304" + crc16(payload + "6304");
+
+  // ===================== EXIBIÇÃO =====================
+  document.getElementById("pix-modal").style.display = "flex";
+  document.getElementById("pix-valor").innerText =
+    `Total a pagar: R$ ${parseFloat(valor).toFixed(2)}`;
+
+  document.getElementById("pix-qrcode").innerHTML = "";
+  new QRCode(document.getElementById("pix-qrcode"), {
+    text: payload,
+    width: 220,
+    height: 220
+  });
+
+  document.getElementById("pix-copia").value = payload;
+}
+
+// ===================== COPIAR PIX =====================
+function copiarPix(){
+  const campo = document.getElementById("pix-copia");
+  campo.select();
+  campo.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  alert("PIX Copia e Cola copiado!");
+}
+</script>
+
 
 // ===================== FINALIZAR PEDIDO =====================
 document.getElementById("btn-toggle-form").addEventListener("click",()=>{
