@@ -176,8 +176,76 @@
   display: inline-block;
 }
 
+
+
+
+.atendimento {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.btn-whats, .btn-contato {
+  text-decoration: none;
+  padding: 14px 26px;
+  border-radius: 14px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+/* WhatsApp */
+.btn-whats {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+}
+
+/* Enviar Mensagem */
+.btn-contato {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+.btn-whats:hover,
+.btn-contato:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.35);
+}
+
+
+
+
+
+
+
+    
   </style>
 </head>
+
+
+
+  
+<section class="atendimento">
+  <a href="https://wa.me/558888170526" target="_blank" class="btn-whats">
+    💬 Falar no WhatsApp
+  </a>
+
+  <a href="duvidas.html" class="btn-contato">
+    📩 Enviar Mensagem
+  </a>
+</section>
+
+
+
+
+
+
+
+
+
+  
 <body>
 <div id="pix-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;align-items:center;justify-content:center">
   <div style="background:#fff;padding:20px;border-radius:14px;max-width:360px;width:100%;text-align:center">
